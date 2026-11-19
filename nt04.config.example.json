@@ -1,0 +1,20 @@
+{
+  "_comment": "Copy to nt04.config.json next to the Data folder (or set NT04_CONFIG) to use. See nt04-config.mjs for every option.",
+  "seasonRaces": 47,
+  "schedules": {
+    "0": [62, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
+  },
+  "fieldSize": 43,
+  "qualifying": { "entrants": 55 },
+  "races": [ { "RAID": 0, "RLAP": 250 } ],
+  "drivers": [ { "DRID": 32, "FNAM": "Tony", "LNAM": "Stewart" } ],
+  "tables": [
+    { "table": "DRVR", "add": [ { "IDCD": 0, "POID": 29, "DRID": 250, "DSID": 29, "VMOD": 17, "DSPD": 95, "DDEF": 90, "DCTL": 90,
+        "FNAM": "Alex", "LNAM": "Rivera", "BMON": 5, "POTN": 75, "DPOP": 100, "DPCQ": 90, "DVAR": 1, "BYER": 1980,
+        "DAGR": 95, "DDUR": 90, "RKYR": 2003, "BDAT": 20, "STAT": "TX", "CITY": "Austin" } ] },
+    { "table": "DSKL", "add": [ { "DRID": 250, "SKIL": 9, "DSKL": 90, "TTYP": 0 }, { "DRID": 250, "SKIL": 9, "DSKL": 92, "TTYP": 1 },
+        { "DRID": 250, "SKIL": 9, "DSKL": 91, "TTYP": 2 }, { "DRID": 250, "SKIL": 8, "DSKL": 85, "TTYP": 3 } ] },
+    { "table": "CARS", "add": [ { "CCRC": 1, "PLID": -2, "TMID": 13, "SPID": 33, "CRID": 250, "DRID": 250, "NSID": 20, "SSID": 273,
+        "CNMD": "77", "CUEM": 1, "CNUM": 77, "CTYP": 1, "OWNR": 250 } ] }
+  ]
+}

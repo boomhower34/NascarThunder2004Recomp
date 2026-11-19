@@ -1,0 +1,3343 @@
+{
+"_source": "XbSymbolDatabase (MIT, github.com/Cxbx-Reloaded/XbSymbolDatabase) run on default.xbe; XDK 5455 libraries",
+"symbols": {
+"XapiMapLetterToDirectory": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1091237,
+"cc": "stdcall",
+"params": [
+"psh pDriveString",
+"psh pDeviceString",
+"psh pszTitleId",
+"psh bCreateDirectory",
+"psh pwszTitleName",
+"psh bUpdateTimestamp"
+],
+"stackBytes": 24
+},
+"XGetSectionSize": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1087358,
+"cc": "stdcall",
+"params": [
+"psh hSection"
+],
+"stackBytes": 4
+},
+"MU_Init": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1854528,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"IUsbInit_GetMaxDeviceTypeCount": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1855042,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh DeviceType"
+],
+"stackBytes": 4
+},
+"g_DeviceType_MU": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 1854104
+},
+"GetTypeInformation": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1859989,
+"cc": "fastcall",
+"params": [
+"ecx XppType"
+],
+"stackBytes": 0
+},
+"g_DeviceTypeInfoTableBegin": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 1854052
+},
+"g_DeviceTypeInfoTableEnd": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 1854060
+},
+"g_DeviceType_Gamepad": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 1854260
+},
+"g_DeviceType_IRDongle": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 1854360
+},
+"D3D_CommonSetDebugRegisters": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1638592,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3D_g_pDevice": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691656
+},
+"D3DDevice_SetRenderState_Simple": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634976,
+"cc": "fastcall",
+"params": [
+"ecx Method",
+"edx Value"
+],
+"stackBytes": 0
+},
+"D3DDevice_SetRenderStateNotInline": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635024,
+"cc": "stdcall",
+"params": [
+"psh State",
+"psh Value"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetRenderState_FillMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636752,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DRS_FogEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691360
+},
+"D3DRS_PSTextureModes": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691536
+},
+"D3DRS_FillMode": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691548
+},
+"D3DRS_BackFillMode": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691552
+},
+"D3DRS_TwoSidedLighting": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691556
+},
+"D3DRS_StencilEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691568
+},
+"D3DRS_StencilFail": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691572
+},
+"D3DRS_FrontFace": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691576
+},
+"D3DRS_CullMode": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691580
+},
+"D3DRS_ZBias": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691588
+},
+"D3DRS_LogicOp": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691592
+},
+"D3DRS_MultiSampleAntiAlias": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691600
+},
+"D3DRS_MultiSampleMask": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691604
+},
+"D3DRS_MultiSampleMode": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691608
+},
+"D3DRS_MultiSampleRenderTargetMode": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691612
+},
+"D3DRS_SampleAlpha": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691624
+},
+"D3DRS_Dxt1NoiseEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691628
+},
+"D3DRS_YuvEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691632
+},
+"D3DRS_OcclusionCullEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691636
+},
+"D3DRS_StencilCullEnable": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691640
+},
+"D3DRS_RopZCmpAlwaysRead": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691644
+},
+"D3DRS_RopZRead": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691648
+},
+"D3DRS_DoNotCullUncompressed": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691652
+},
+"D3D_g_RenderState": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1690992
+},
+"D3D_g_ComplexRenderState": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691536
+},
+"D3D_g_DeferredRenderState": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1691360
+},
+"D3DDevice_SetTextureState_TexCoordIndex": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637136,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh Value"
+],
+"stackBytes": 8
+},
+"D3D_g_DeferredTextureState": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1690480
+},
+"D3DDevice_SetStreamSource": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629744,
+"cc": "stdcall",
+"params": [
+"psh StreamNumber",
+"psh pStreamData",
+"psh Stride"
+],
+"stackBytes": 12
+},
+"D3D_g_Stream": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 1686616
+},
+"D3DDevice__m_VerticalBlankEvent_OFFSET": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 6556
+},
+"D3DDevice__m_SwapCallback_OFFSET": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 6548
+},
+"D3DDevice__m_VBlankCallback_OFFSET": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 6552
+},
+"CDirectSoundStream_Constructor": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715962,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pdssd"
+],
+"stackBytes": 4
+},
+"CDirectSoundStream_AddRef": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711768,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"CDirectSoundStream_Release": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711839,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"CDirectSoundStream_GetInfo": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711917,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pInfo"
+],
+"stackBytes": 8
+},
+"CDirectSoundStream_GetStatus__r2": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712172,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pdwStatus"
+],
+"stackBytes": 8
+},
+"CDirectSoundStream_Process": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712253,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pInputBuffer",
+"psh pOutputBuffer"
+],
+"stackBytes": 12
+},
+"CDirectSoundStream_Discontinuity": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712020,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"CDirectSoundStream_Flush": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712097,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"_cinit": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1093281,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"_rtinit": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1093369,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"XapiFormatObjectAttributes": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1089638,
+"cc": "stdcall",
+"params": [
+"psh pObjectAttributes",
+"psh pObjectName",
+"psh pName"
+],
+"stackBytes": 12
+},
+"XapiCallThreadNotifyRoutines": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081352,
+"cc": "stdcall",
+"params": [
+"psh Create"
+],
+"stackBytes": 4
+},
+"XLaunchNewImageA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1076732,
+"cc": "stdcall",
+"params": [
+"psh lpTitlePath",
+"psh pLaunchData"
+],
+"stackBytes": 8
+},
+"XUnmountAlternateTitleA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1095848,
+"cc": "stdcall",
+"params": [
+"psh chDrive"
+],
+"stackBytes": 4
+},
+"mainXapiStartup": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1087492,
+"cc": "stdcall",
+"params": [
+"psh lpParameter"
+],
+"stackBytes": 4
+},
+"GetLastError": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1082346,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"SetLastError": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1082386,
+"cc": "stdcall",
+"params": [
+"psh ErrorCode"
+],
+"stackBytes": 4
+},
+"UnhandledExceptionFilter": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081761,
+"cc": "stdcall",
+"params": [
+"psh ExceptionPointers"
+],
+"stackBytes": 4
+},
+"XapiBootToDash": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1092142,
+"cc": "stdcall",
+"params": [
+"psh dwReason",
+"psh dwParameter1",
+"psh dwParameter2"
+],
+"stackBytes": 12
+},
+"XapiSelectCachePartition": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1094581,
+"cc": "stdcall",
+"params": [
+"psh bAlwaysFormat",
+"psh pnCachePartition",
+"psh pbForceFormat"
+],
+"stackBytes": 12
+},
+"XapiSetLastNTError": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1082432,
+"cc": "stdcall",
+"params": [
+"psh Status"
+],
+"stackBytes": 4
+},
+"XapiThreadStartup": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081821,
+"cc": "stdcall",
+"params": [
+"psh StartRoutine",
+"psh StartContext"
+],
+"stackBytes": 8
+},
+"CreateEventA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1080792,
+"cc": "stdcall",
+"params": [
+"psh lpEventAttributes",
+"psh bManualReset",
+"psh bInitialState",
+"psh lpName"
+],
+"stackBytes": 16
+},
+"CreateMutexA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081050,
+"cc": "stdcall",
+"params": [
+"psh lpMutexAttributes",
+"psh bInitialOwner",
+"psh lpName"
+],
+"stackBytes": 12
+},
+"CreateThread": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081973,
+"cc": "stdcall",
+"params": [
+"psh lpThreadAttributes",
+"psh dwStackSize",
+"psh lpStartAddress",
+"psh lpParameter",
+"psh dwCreationFlags",
+"psh lpThreadId"
+],
+"stackBytes": 24
+},
+"ExitThread": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081652,
+"cc": "stdcall",
+"params": [
+"psh dwExitCode"
+],
+"stackBytes": 4
+},
+"MoveFileA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1082722,
+"cc": "stdcall",
+"params": [
+"psh lpExistingFileName",
+"psh lpNewFileName"
+],
+"stackBytes": 8
+},
+"XapiInitProcess": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1092900,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"XCalculateSignatureBegin": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1106773,
+"cc": "stdcall",
+"params": [
+"psh dwFlags",
+"psh dwAltTitleId"
+],
+"stackBytes": 8
+},
+"GetOverlappedResult": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1082455,
+"cc": "stdcall",
+"params": [
+"psh hFile",
+"psh lpOverlapped",
+"psh lpNumberOfBytesTransferred",
+"psh bWait"
+],
+"stackBytes": 16
+},
+"GetTimeZoneInformation": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1078107,
+"cc": "stdcall",
+"params": [
+"psh lpTimeZoneInformation"
+],
+"stackBytes": 4
+},
+"OutputDebugStringA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1612456,
+"cc": "stdcall",
+"params": [
+"psh lpOutputString"
+],
+"stackBytes": 4
+},
+"mainCRTStartup": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1087608,
+"cc": "cdecl",
+"params": [],
+"stackBytes": 0
+},
+"QueryPerformanceCounter": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1613164,
+"cc": "stdcall",
+"params": [
+"psh lpPerformanceCount"
+],
+"stackBytes": 4
+},
+"RaiseException": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081566,
+"cc": "stdcall",
+"params": [
+"psh dwExceptionCode",
+"psh dwExceptionFlags",
+"psh nNumberOfArguments",
+"psh lpArguments"
+],
+"stackBytes": 16
+},
+"SetEvent": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1080889,
+"cc": "stdcall",
+"params": [
+"psh hEvent"
+],
+"stackBytes": 4
+},
+"SetThreadPriority": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081408,
+"cc": "stdcall",
+"params": [
+"psh hThread",
+"psh nPriority"
+],
+"stackBytes": 8
+},
+"XAutoPowerDownResetTimer": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1105719,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"XMountAlternateTitleA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1095397,
+"cc": "stdcall",
+"params": [
+"psh lpRootPath",
+"psh dwAltTitleId",
+"psh pchDrive"
+],
+"stackBytes": 12
+},
+"XMountUtilityDrive": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1095136,
+"cc": "stdcall",
+"params": [
+"psh bFormatClean"
+],
+"stackBytes": 4
+},
+"XMUNameFromDriveLetter": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1095941,
+"cc": "stdcall",
+"params": [
+"psh chDrive",
+"psh pwszName",
+"psh chName"
+],
+"stackBytes": 12
+},
+"XRegisterThreadNotifyRoutine": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1081688,
+"cc": "stdcall",
+"params": [
+"psh pThreadNotification",
+"psh bRegister"
+],
+"stackBytes": 8
+},
+"timeKillEvent": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1612264,
+"cc": "stdcall",
+"params": [
+"psh uTimerID"
+],
+"stackBytes": 4
+},
+"timeSetEvent": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1611972,
+"cc": "stdcall",
+"params": [
+"psh uDelay",
+"psh uResolution",
+"psh lpTimeProc",
+"psh dwUser",
+"psh uEvent"
+],
+"stackBytes": 20
+},
+"GetTypeInformation2": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1859934,
+"cc": "fastcall",
+"params": [
+"cl XidType",
+"edx pTypeIndex"
+],
+"stackBytes": 0
+},
+"XGetDeviceChanges": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1858111,
+"cc": "stdcall",
+"params": [
+"psh DeviceType",
+"psh pdwInsertions",
+"psh pdwRemovals"
+],
+"stackBytes": 12
+},
+"XGetDevices": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1858077,
+"cc": "stdcall",
+"params": [
+"psh DeviceType"
+],
+"stackBytes": 4
+},
+"XID_fCloseDevice": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1872930,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"XInitDevices": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1854796,
+"cc": "stdcall",
+"params": [
+"psh dwPreallocTypeCount",
+"psh PreallocTypes"
+],
+"stackBytes": 8
+},
+"XInputClose": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1860118,
+"cc": "stdcall",
+"params": [
+"psh hDevice"
+],
+"stackBytes": 4
+},
+"XInputGetCapabilities": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1860130,
+"cc": "stdcall",
+"params": [
+"psh hDevice",
+"psh pCapabilities"
+],
+"stackBytes": 8
+},
+"XInputGetState": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1860602,
+"cc": "stdcall",
+"params": [
+"psh hDevice",
+"psh pState"
+],
+"stackBytes": 8
+},
+"XInputOpen": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1860032,
+"cc": "stdcall",
+"params": [
+"psh DeviceType",
+"psh dwPort",
+"psh dwSlot",
+"psh pPollingParameters"
+],
+"stackBytes": 16
+},
+"XInputSetState": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1860717,
+"cc": "stdcall",
+"params": [
+"psh hDevice",
+"psh pFeedback"
+],
+"stackBytes": 8
+},
+"XMountMUA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1859327,
+"cc": "stdcall",
+"params": [
+"psh dwPort",
+"psh dwSlot",
+"psh pchDrive"
+],
+"stackBytes": 12
+},
+"XMUPortFromDriveLetterA": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1859903,
+"cc": "stdcall",
+"params": [
+"psh chDrive"
+],
+"stackBytes": 4
+},
+"XUnmountMU": {
+"lib": "XAPILIB",
+"kind": "fun",
+"addr": 1859633,
+"cc": "stdcall",
+"params": [
+"psh dwPort",
+"psh dwSlot"
+],
+"stackBytes": 8
+},
+"D3D_UpdateProjectionViewportTransform": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635424,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"CDevice_InitializeFrameBuffers": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1647856,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pPresentationParams"
+],
+"stackBytes": 4
+},
+"CDevice_FreeFrameBuffers": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1647552,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CDevice_SetStateUP": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1667488,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CDevice_SetStateVB": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1667072,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh unknown2"
+],
+"stackBytes": 4
+},
+"CMiniport_CreateCtxDmaObject": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1658930,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh unknown1",
+"psh unknown2",
+"psh unknown3",
+"psh unknown4",
+"psh unknown5"
+],
+"stackBytes": 20
+},
+"CMiniport_InitHardware": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1659716,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMiniport_IsFlipPending": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1655344,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"D3DDevice_Begin": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634480,
+"cc": "stdcall",
+"params": [
+"psh PrimitiveType"
+],
+"stackBytes": 4
+},
+"D3DDevice_BeginStateBig": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1646544,
+"cc": "stdcall",
+"params": [
+"psh unknown1"
+],
+"stackBytes": 4
+},
+"D3DDevice_BeginVisibilityTest": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1625584,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_BlockUntilVerticalBlank": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622208,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_Clear": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1654336,
+"cc": "stdcall",
+"params": [
+"psh Count",
+"psh pRects",
+"psh Flags",
+"psh Color",
+"psh Z",
+"psh Stencil"
+],
+"stackBytes": 24
+},
+"D3DDevice_CreatePalette2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634784,
+"cc": "stdcall",
+"params": [
+"psh Size"
+],
+"stackBytes": 4
+},
+"D3DDevice_CreatePixelShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640816,
+"cc": "stdcall",
+"params": [
+"psh pPSDef",
+"psh pHandle"
+],
+"stackBytes": 8
+},
+"D3DDevice_CreateTexture2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631168,
+"cc": "stdcall",
+"params": [
+"psh Width",
+"psh Height",
+"psh Depth",
+"psh Levels",
+"psh Usage",
+"psh Format",
+"psh D3DResource"
+],
+"stackBytes": 28
+},
+"D3DDevice_CreateVertexBuffer2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634624,
+"cc": "stdcall",
+"params": [
+"psh Length"
+],
+"stackBytes": 4
+},
+"D3DDevice_CreateVertexShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1628784,
+"cc": "stdcall",
+"params": [
+"psh pDeclaration",
+"psh pFunction",
+"psh pHandle",
+"psh Usage"
+],
+"stackBytes": 16
+},
+"D3DDevice_DeletePixelShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640896,
+"cc": "stdcall",
+"params": [
+"psh Handle"
+],
+"stackBytes": 4
+},
+"D3DDevice_DeleteVertexShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1630528,
+"cc": "stdcall",
+"params": [
+"psh Handle"
+],
+"stackBytes": 4
+},
+"D3DDevice_DrawIndexedVertices": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1633632,
+"cc": "stdcall",
+"params": [
+"psh PrimitiveType",
+"psh VertexCount",
+"psh pIndexData"
+],
+"stackBytes": 12
+},
+"D3DDevice_DrawIndexedVerticesUP": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1633152,
+"cc": "stdcall",
+"params": [
+"psh PrimitiveType",
+"psh VertexCount",
+"psh pIndexData",
+"psh pVertexStreamZeroData",
+"psh VertexStreamZeroStride"
+],
+"stackBytes": 20
+},
+"D3DDevice_DrawVertices": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1633472,
+"cc": "stdcall",
+"params": [
+"psh PrimitiveType",
+"psh StartVertex",
+"psh VertexCount"
+],
+"stackBytes": 12
+},
+"D3DDevice_DrawVerticesUP": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1632784,
+"cc": "stdcall",
+"params": [
+"psh PrimitiveType",
+"psh VertexCount",
+"psh pVertexStreamZeroData",
+"psh VertexStreamZeroStride"
+],
+"stackBytes": 16
+},
+"D3DDevice_End": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634544,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_EndVisibilityTest": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1625744,
+"cc": "stdcall",
+"params": [
+"psh Index"
+],
+"stackBytes": 4
+},
+"D3DDevice_GetBackBuffer2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1623200,
+"cc": "stdcall",
+"params": [
+"psh BackBuffer"
+],
+"stackBytes": 4
+},
+"D3DDevice_GetDepthStencilSurface2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1623312,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_GetPushBufferOffset": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1678640,
+"cc": "stdcall",
+"params": [
+"psh pOffset"
+],
+"stackBytes": 4
+},
+"D3DDevice_GetTransform": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621808,
+"cc": "stdcall",
+"params": [
+"psh State",
+"psh pMatrix"
+],
+"stackBytes": 8
+},
+"D3DDevice_GetVertexShaderSize": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1630144,
+"cc": "stdcall",
+"params": [
+"psh Handle",
+"psh pSize"
+],
+"stackBytes": 8
+},
+"D3DDevice_GetViewport": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621856,
+"cc": "stdcall",
+"params": [
+"psh pViewport"
+],
+"stackBytes": 4
+},
+"D3DDevice_GetViewportOffsetAndScale": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635120,
+"cc": "stdcall",
+"params": [
+"psh pOffset",
+"psh pScale"
+],
+"stackBytes": 8
+},
+"D3DDevice_GetVisibilityTestResult": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622064,
+"cc": "stdcall",
+"params": [
+"psh Index",
+"psh pResult",
+"psh pTimeStamp"
+],
+"stackBytes": 12
+},
+"D3DDevice_IsBusy": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1625536,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"CDevice_KickOff": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1645344,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"D3DDevice_LoadVertexShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629888,
+"cc": "stdcall",
+"params": [
+"psh Handle",
+"psh Address"
+],
+"stackBytes": 8
+},
+"D3DDevice_Release": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621968,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_SelectVertexShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629984,
+"cc": "stdcall",
+"params": [
+"psh Handle",
+"psh Address"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetFlickerFilter": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622256,
+"cc": "stdcall",
+"params": [
+"psh Filter"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetGammaRamp": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621376,
+"cc": "stdcall",
+"params": [
+"psh dwFlags",
+"psh pRamp"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetLight": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1623904,
+"cc": "stdcall",
+"params": [
+"psh Index",
+"psh pLight"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetPalette": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1625392,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh pPalette"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetPixelShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640928,
+"cc": "stdcall",
+"params": [
+"psh Handle"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetPixelShaderConstant": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1641440,
+"cc": "stdcall",
+"params": [
+"psh Register",
+"psh pConstantData",
+"psh ConstantCount"
+],
+"stackBytes": 12
+},
+"D3DDevice_SetRenderState_BackFillMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636832,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_CullMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635952,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_DoNotCullUncompressed": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640400,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_Dxt1NoiseEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636400,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_EdgeAntiAlias": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635744,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_FogColor": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635872,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_FrontFace": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636064,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_LineWidth": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636288,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_LogicOp": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636656,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_MultiSampleAntiAlias": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640528,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_MultiSampleMask": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640656,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_MultiSampleMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640432,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_MultiSampleRenderTargetMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640480,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_NormalizeNormals": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636128,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_OcclusionCullEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640112,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_PSTextureModes": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634928,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_RopZCmpAlwaysRead": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640336,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_RopZRead": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640368,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_SampleAlpha": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640736,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_ShadowFunc": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1635808,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_StencilCullEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640224,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_StencilEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1639808,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_StencilFail": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1639952,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_TextureFactor": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636192,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_TwoSidedLighting": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636928,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_VertexBlend": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637056,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_YuvEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1640064,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_ZBias": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1636528,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderState_ZEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1639664,
+"cc": "stdcall",
+"params": [
+"psh Value"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetRenderTarget": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622560,
+"cc": "stdcall",
+"params": [
+"psh pRenderTarget",
+"psh pNewZStencil"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetScissors": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1626064,
+"cc": "stdcall",
+"params": [
+"psh Count",
+"psh Exclusive",
+"psh pRects"
+],
+"stackBytes": 12
+},
+"D3DDevice_SetScreenSpaceOffset": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1626832,
+"cc": "stdcall",
+"params": [
+"psh x",
+"psh y"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetShaderConstantMode": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1630176,
+"cc": "stdcall",
+"params": [
+"psh Mode"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetSoftDisplayFilter": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622336,
+"cc": "stdcall",
+"params": [
+"psh Enable"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetTexture": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1624960,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh pTexture"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetTextureStageStateNotInline": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637648,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh Type",
+"psh Value"
+],
+"stackBytes": 12
+},
+"D3DDevice_SetTextureState_BorderColor": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637520,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh Value"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetTextureState_BumpEnv": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637408,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh Type",
+"psh Value"
+],
+"stackBytes": 12
+},
+"D3DDevice_SetTextureState_ColorKeyColor": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1637584,
+"cc": "stdcall",
+"params": [
+"psh Stage",
+"psh Value"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetTransform": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621520,
+"cc": "stdcall",
+"params": [
+"psh State",
+"psh pMatrix"
+],
+"stackBytes": 8
+},
+"D3DDevice_SetVertexData2f": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634240,
+"cc": "stdcall",
+"params": [
+"psh Register",
+"psh a",
+"psh b"
+],
+"stackBytes": 12
+},
+"D3DDevice_SetVertexData4f": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634304,
+"cc": "stdcall",
+"params": [
+"psh Register",
+"psh a",
+"psh b",
+"psh c",
+"psh d"
+],
+"stackBytes": 20
+},
+"D3DDevice_SetVertexData4ub": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634400,
+"cc": "stdcall",
+"params": [
+"psh Register",
+"psh a",
+"psh b",
+"psh c",
+"psh d"
+],
+"stackBytes": 20
+},
+"D3DDevice_SetVertexShader": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1630800,
+"cc": "stdcall",
+"params": [
+"psh Handle"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetVertexShaderConstant1": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629104,
+"cc": "fastcall",
+"params": [
+"ecx Register",
+"edx pConstantData"
+],
+"stackBytes": 0
+},
+"D3DDevice_SetVertexShaderConstant1Fast": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629200,
+"cc": "fastcall",
+"params": [
+"ecx Register",
+"edx pConstantData"
+],
+"stackBytes": 0
+},
+"D3DDevice_SetVertexShaderConstant4": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629280,
+"cc": "fastcall",
+"params": [
+"ecx Register",
+"edx pConstantData"
+],
+"stackBytes": 0
+},
+"D3DDevice_SetVertexShaderConstantNotInline": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629680,
+"cc": "fastcall",
+"params": [
+"ecx Register",
+"edx pConstantData",
+"psh ConstantCount"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetVertexShaderConstantNotInlineFast": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1629456,
+"cc": "fastcall",
+"params": [
+"ecx Register",
+"edx pConstantData",
+"psh ConstantCount"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetVerticalBlankCallback": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622176,
+"cc": "stdcall",
+"params": [
+"psh pCallback"
+],
+"stackBytes": 4
+},
+"D3DDevice_SetViewport": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1623344,
+"cc": "stdcall",
+"params": [
+"psh pViewport"
+],
+"stackBytes": 4
+},
+"D3DDevice_Swap": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1677984,
+"cc": "stdcall",
+"params": [
+"psh Flags"
+],
+"stackBytes": 4
+},
+"D3DDevice_SwitchTexture": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1621920,
+"cc": "fastcall",
+"params": [
+"ecx Method",
+"edx Data",
+"psh Format"
+],
+"stackBytes": 4
+},
+"D3DPalette_Lock2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634880,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh Flags"
+],
+"stackBytes": 8
+},
+"D3DResource_AddRef": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1632192,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"D3DResource_GetType": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1632336,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"D3DResource_Register": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1632480,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pBase"
+],
+"stackBytes": 8
+},
+"D3DResource_Release": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1632256,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"D3DSurface_GetDesc": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631760,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pDesc"
+],
+"stackBytes": 8
+},
+"D3DSurface_LockRect": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631792,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pLockedRect",
+"psh pRect",
+"psh Flags"
+],
+"stackBytes": 16
+},
+"D3DTexture_GetSurfaceLevel2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631344,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh Level"
+],
+"stackBytes": 8
+},
+"D3DTexture_LockRect": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631424,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh Level",
+"psh pLockedRect",
+"psh pRect",
+"psh Flags"
+],
+"stackBytes": 20
+},
+"D3DVertexBuffer_Lock2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1634704,
+"cc": "stdcall",
+"params": [
+"psh pVertexBuffer",
+"psh Flags"
+],
+"stackBytes": 8
+},
+"D3D_AllocContiguousMemory": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1678816,
+"cc": "stdcall",
+"params": [
+"psh dwSize",
+"psh dwAllocAttributes"
+],
+"stackBytes": 8
+},
+"D3D_BlockOnResource": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1646656,
+"cc": "stdcall",
+"params": [
+"psh pResource"
+],
+"stackBytes": 4
+},
+"D3D_BlockOnTime": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1645824,
+"cc": "stdcall",
+"params": [
+"psh unknown1",
+"psh unknown2"
+],
+"stackBytes": 8
+},
+"CMiniport_GetDisplayCapabilities": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1653557,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3D_CommonSetMultiSampleModeAndScale": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1638800,
+"cc": "fastcall",
+"params": [
+"ecx this",
+"edx pViewport"
+],
+"stackBytes": 0
+},
+"D3D_DestroyResource": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1631904,
+"cc": "stdcall",
+"params": [
+"psh pResource"
+],
+"stackBytes": 4
+},
+"D3D_KickOffAndWaitForIdle": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1646624,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3D_LazySetPointParams": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1661376,
+"cc": "stdcall",
+"params": [
+"psh Device"
+],
+"stackBytes": 4
+},
+"D3D_SetFence": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1645648,
+"cc": "stdcall",
+"params": [
+"psh Flags"
+],
+"stackBytes": 4
+},
+"D3D_SetPushBufferSize": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1678416,
+"cc": "stdcall",
+"params": [
+"psh PushBufferSize",
+"psh KickOffSize"
+],
+"stackBytes": 8
+},
+"D3D_SetTileNoWait": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1625840,
+"cc": "stdcall",
+"params": [
+"psh Index",
+"psh pTile"
+],
+"stackBytes": 8
+},
+"Direct3D_CreateDevice": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1678448,
+"cc": "stdcall",
+"params": [
+"psh Adapter",
+"psh DeviceType",
+"psh hFocusWindow",
+"psh BehaviorFlags",
+"psh pPresentationParameters",
+"psh ppReturnedDeviceInterface"
+],
+"stackBytes": 24
+},
+"Get2DSurfaceDesc": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1652144,
+"cc": "stdcall",
+"params": [
+"psh pPixelContainer",
+"psh dwLevel",
+"psh pDesc"
+],
+"stackBytes": 12
+},
+"Lock2DSurface": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1652896,
+"cc": "stdcall",
+"params": [
+"psh pPixelContainer",
+"psh FaceType",
+"psh Level",
+"psh pLockedRect",
+"psh pRect",
+"psh Flags"
+],
+"stackBytes": 24
+},
+"D3D_MakeRequestedSpace_8": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1646144,
+"cc": "stdcall",
+"params": [
+"psh MinimumSpace",
+"psh RequestedSpace"
+],
+"stackBytes": 8
+},
+"D3DDevice_BlockOnFence": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622048,
+"cc": "stdcall",
+"params": [
+"psh Fence"
+],
+"stackBytes": 4
+},
+"D3DDevice_GetRenderTarget2": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1623280,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_InsertFence": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1622432,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice_LightEnable": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1624608,
+"cc": "stdcall",
+"params": [
+"psh Index",
+"psh bEnable"
+],
+"stackBytes": 8
+},
+"D3DDevice_MakeSpace": {
+"lib": "D3D8",
+"kind": "fun",
+"addr": 1646528,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"XGSetTextureHeader": {
+"lib": "XGRAPHC",
+"kind": "fun",
+"addr": 1709094,
+"cc": "stdcall",
+"params": [
+"psh Width",
+"psh Height",
+"psh Levels",
+"psh Usage",
+"psh Format",
+"psh Pool",
+"psh pTexture",
+"psh Data",
+"psh Pitch"
+],
+"stackBytes": 36
+},
+"XGSwizzleRect": {
+"lib": "XGRAPHC",
+"kind": "fun",
+"addr": 1704868,
+"cc": "stdcall",
+"params": [
+"psh pSource",
+"psh Pitch",
+"psh pRect",
+"psh pDest",
+"psh Width",
+"psh Height",
+"psh pPoint",
+"psh BytesPerPixel"
+],
+"stackBytes": 32
+},
+"XGUnswizzleRect": {
+"lib": "XGRAPHC",
+"kind": "fun",
+"addr": 1706741,
+"cc": "stdcall",
+"params": [
+"psh pSource",
+"psh Width",
+"psh Height",
+"psh pRect",
+"psh pDest",
+"psh Pitch",
+"psh pPoint",
+"psh BytesPerPixel"
+],
+"stackBytes": 32
+},
+"XAudioCalculatePitch": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709957,
+"cc": "stdcall",
+"params": [
+"psh dwFrequency"
+],
+"stackBytes": 4
+},
+"DirectSoundEnterCriticalSection": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709773,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"DSound_CRefCount_AddRef": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709388,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"DSound_CRefCount_Release": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709401,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"DSound_CMemoryManager_PoolAlloc": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1719169,
+"cc": "stdcall",
+"params": [
+"psh PoolTag",
+"psh Size",
+"psh ZeroInitialize"
+],
+"stackBytes": 12
+},
+"CMcpxAPU_ServiceDeferredCommandsLow": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1722241,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxAPU_SetMixBinHeadroom_4": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1722442,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwMixBinMask"
+],
+"stackBytes": 4
+},
+"CDirectSound3DCalculator_Calculate3D": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715999,
+"cc": "stdcall",
+"params": [
+"psh pUnknown1",
+"psh pUnknown2"
+],
+"stackBytes": 8
+},
+"CDirectSound3DCalculator_GetVoiceData": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712559,
+"cc": "stdcall",
+"params": [
+"psh pUnknown1",
+"psh pUnknown2",
+"psh pUnknown3",
+"psh pUnknown4",
+"psh pUnknown5"
+],
+"stackBytes": 20
+},
+"CMcpxVoiceClient_SetEG": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1732109,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pEnvelopeDesc"
+],
+"stackBytes": 4
+},
+"CMcpxVoiceClient_SetFilter": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1732511,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pFilterDesc"
+],
+"stackBytes": 4
+},
+"CMcpxVoiceClient_SetMixBins": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1733404,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxVoiceClient_SetPitch": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1733749,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxVoiceClient_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1733597,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxVoiceClient_Commit3dSettings_0": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1734443,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CDirectSoundVoiceSettings_SetMixBinVolumes": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710467,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pMixBins"
+],
+"stackBytes": 4
+},
+"CDirectSoundVoice_CommitDeferredSettings": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710811,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"CDirectSoundVoice_SetEG": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710744,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pEnvelopeDesc"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetFilter": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710763,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pFilterDesc"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetMixBins": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714881,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pMixBins"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetMixBinVolumes_8": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710782,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pMixBins"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetPitch": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710691,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh lPitch"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetFrequency": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714845,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwFrequency"
+],
+"stackBytes": 8
+},
+"CDirectSoundVoice_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710716,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh lVolume"
+],
+"stackBytes": 8
+},
+"CDirectSoundBufferSettings_SetBufferData": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715648,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pvBufferData",
+"psh dwBufferBytes"
+],
+"stackBytes": 8
+},
+"CMcpxBuffer_GetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1736452,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pdwCurrentPlayCursor",
+"psh pdwCurrentWriteCursor"
+],
+"stackBytes": 8
+},
+"CMcpxBuffer_GetStatus": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1736386,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pdwStatus"
+],
+"stackBytes": 4
+},
+"CMcpxBuffer_Pause": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1736271,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwPause"
+],
+"stackBytes": 4
+},
+"CMcpxBuffer_Play": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1737486,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwFlags"
+],
+"stackBytes": 4
+},
+"CMcpxBuffer_SetBufferData": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1738118,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxBuffer_SetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1737836,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwNewPosition"
+],
+"stackBytes": 4
+},
+"CMcpxBuffer_Stop": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1737692,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwFlags"
+],
+"stackBytes": 4
+},
+"CMcpxStream_Stop": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1724256,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwFlags"
+],
+"stackBytes": 4
+},
+"CMcpxStream_Stop_Ex": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1725478,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh2 rtTimeStamp",
+"psh dwFlags"
+],
+"stackBytes": 8
+},
+"CMcpxStream_Flush": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1726036,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxStream_Discontinuity": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1725796,
+"cc": "thiscall",
+"params": [
+"ecx this"
+],
+"stackBytes": 0
+},
+"CMcpxStream_GetStatus": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1724370,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh pdwStatus"
+],
+"stackBytes": 4
+},
+"CMcpxStream_Pause": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1727167,
+"cc": "thiscall",
+"params": [
+"ecx this",
+"psh dwPause"
+],
+"stackBytes": 4
+},
+"CDirectSoundBuffer_GetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711540,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pdwCurrentPlayCursor",
+"psh pdwCurrentWriteCursor"
+],
+"stackBytes": 12
+},
+"CDirectSoundBuffer_GetStatus": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711326,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pdwStatus"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_Play": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711166,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh dwReserved1",
+"psh dwReserved2",
+"psh dwFlags"
+],
+"stackBytes": 16
+},
+"CDirectSoundBuffer_SetBufferData": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715788,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pvBufferData",
+"psh dwBufferBytes"
+],
+"stackBytes": 12
+},
+"CDirectSoundBuffer_SetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711625,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh dwNewPosition"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_SetFilter": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713449,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pFilterDesc"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_SetFrequency": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715024,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh dwFrequency"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_SetLoopRegion": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711407,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh dwLoopStart",
+"psh dwLoopLength"
+],
+"stackBytes": 12
+},
+"CDirectSoundBuffer_SetMixBins": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715102,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh mixBins"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_SetMixBinVolumes_8": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713527,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pMixBins"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713371,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh lVolume"
+],
+"stackBytes": 8
+},
+"CDirectSoundBuffer_Stop": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1711247,
+"cc": "stdcall",
+"params": [
+"psh this"
+],
+"stackBytes": 4
+},
+"CDirectSoundStream_FlushEx": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712453,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh2 rtTimeStamp",
+"psh dwFlags"
+],
+"stackBytes": 12
+},
+"CDirectSoundStream_Pause": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1712372,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwPause"
+],
+"stackBytes": 8
+},
+"CDirectSoundStream_SetEG": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713687,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pEnvelopeDesc"
+],
+"stackBytes": 8
+},
+"CDirectSoundStream_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713605,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh lVolume"
+],
+"stackBytes": 8
+},
+"CDirectSound_CommitDeferredSettings": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1716778,
+"cc": "stdcall",
+"params": [
+"psh this"
+],
+"stackBytes": 4
+},
+"CDirectSound_CreateSoundBuffer": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1717842,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pdsbd",
+"psh ppBuffer",
+"psh pUnused4"
+],
+"stackBytes": 16
+},
+"CDirectSound_CreateSoundStream": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1717998,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pdssd",
+"psh ppStream",
+"psh pUnused4"
+],
+"stackBytes": 16
+},
+"CDirectSound_DownloadEffectsImage": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710223,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pvImageBuffer",
+"psh dwImageSize",
+"psh pImageLoc",
+"psh ppImageDesc"
+],
+"stackBytes": 20
+},
+"CDirectSound_DoWork": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710418,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"CDirectSound_SetI3DL2Listener": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1718143,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh pds3dl",
+"psh dwApply"
+],
+"stackBytes": 12
+},
+"CDirectSound_SetMixBinHeadroom": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1710323,
+"cc": "stdcall",
+"params": [
+"psh this",
+"psh dwMixBinMask",
+"psh dwHeadroom"
+],
+"stackBytes": 12
+},
+"IDirectSoundBuffer_GetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714044,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pdwCurrentPlayCursor",
+"psh pdwCurrentWriteCursor"
+],
+"stackBytes": 12
+},
+"IDirectSoundBuffer_GetStatus": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714016,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pdwStatus"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_Play": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713924,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwReserved1",
+"psh dwReserved2",
+"psh dwFlags"
+],
+"stackBytes": 16
+},
+"IDirectSoundBuffer_Release": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709935,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"IDirectSoundBuffer_SetBufferData": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1716575,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pvBufferData",
+"psh dwBufferBytes"
+],
+"stackBytes": 12
+},
+"IDirectSoundBuffer_SetCurrentPosition": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714076,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwNewPosition"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_SetFilter": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713868,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pFilterDesc"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_SetFrequency": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715180,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwFrequency"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_SetLoopRegion": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713984,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwLoopStart",
+"psh dwLoopLength"
+],
+"stackBytes": 12
+},
+"IDirectSoundBuffer_SetMixBins": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1715208,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh mixBins"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_SetMixBinVolumes_8": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713896,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pMixBins"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713840,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh lVolume"
+],
+"stackBytes": 8
+},
+"IDirectSoundBuffer_Stop": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713960,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"IDirectSoundStream_FlushEx": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714119,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh2 rtTimeStamp",
+"psh dwFlags"
+],
+"stackBytes": 12
+},
+"IDirectSoundStream_Pause": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714114,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwPause"
+],
+"stackBytes": 8
+},
+"IDirectSoundStream_SetEG": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714109,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pEnvelopeDesc"
+],
+"stackBytes": 8
+},
+"IDirectSoundStream_SetVolume": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714104,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh lVolume"
+],
+"stackBytes": 8
+},
+"IDirectSound_CreateSoundBuffer": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1718434,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pdsbd",
+"psh ppBuffer",
+"psh pUnused4"
+],
+"stackBytes": 16
+},
+"IDirectSound_DownloadEffectsImage": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713769,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pvImageBuffer",
+"psh dwImageSize",
+"psh pImageLoc",
+"psh ppImageDesc"
+],
+"stackBytes": 20
+},
+"IDirectSound_Release": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1709913,
+"cc": "stdcall",
+"params": [
+"psh pThis"
+],
+"stackBytes": 4
+},
+"IDirectSound_SetI3DL2Listener": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1718470,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh pds3dl",
+"psh dwApply"
+],
+"stackBytes": 12
+},
+"IDirectSound_SetMixBinHeadroom": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1713808,
+"cc": "stdcall",
+"params": [
+"psh pThis",
+"psh dwMixBinMask",
+"psh dwHeadroom"
+],
+"stackBytes": 12
+},
+"DirectSoundCreate": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1718924,
+"cc": "stdcall",
+"params": [
+"psh pguidDeviceId",
+"psh ppDirectSound",
+"psh pUnused3"
+],
+"stackBytes": 12
+},
+"DirectSoundCreateBuffer": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1718995,
+"cc": "stdcall",
+"params": [
+"psh pdsbd",
+"psh ppBuffer"
+],
+"stackBytes": 8
+},
+"DirectSoundCreateStream": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1719082,
+"cc": "stdcall",
+"params": [
+"psh pdssd",
+"psh ppStream"
+],
+"stackBytes": 8
+},
+"DirectSoundDoWork": {
+"lib": "DSOUND",
+"kind": "fun",
+"addr": 1714143,
+"cc": "stdcall",
+"params": [],
+"stackBytes": 0
+},
+"D3DDevice__m_VertexShader_OFFSET": {
+"lib": "D3D8",
+"kind": "var",
+"addr": 892
+},
+"g_XapiAltLett_MU": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 2286276
+},
+"g_XapiMountedMUs": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 2286280
+},
+"g_XapiCurrentTopLevelFilter": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 3098532
+},
+"_tls_array": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 4
+},
+"_tls_index": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 2286272
+},
+"XapiLastErrorCode_OFFSET": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 8
+},
+"XapiThreadNotifyRoutineList": {
+"lib": "XAPILIB",
+"kind": "var",
+"addr": 2118380
+}
+}
+}

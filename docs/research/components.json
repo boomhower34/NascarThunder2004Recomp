@@ -1,0 +1,3041 @@
+{
+ "note": "Stage components (base class vtable 0x1D20AC, ctor 0x1755C0). methods = vtable slots 0-9: 0 dtor, 1 OnBeforeEnter(self), 2 OnAfterEnter(self), 3 OnBeforeExit(self), 4 OnAfterExit(self), 5 Enter()->bool, 6 Exit()->bool, 7 GetDependencies()->null-terminated list, 8 ?, 9 GetName()",
+ "components": [
+  {
+   "object": "0x2F3A70",
+   "name": "AI",
+   "vtable": "0x1F9698",
+   "depends_on": [
+    "Game Manager",
+    "Line",
+    "AISpeeds",
+    "Car(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA03E0",
+    "slot6": "0xA03F0",
+    "slot7": "0xA03C0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA03D0"
+   }
+  },
+  {
+   "object": "0x2F3A84",
+   "name": "AISpeeds",
+   "vtable": "0x1F96C4",
+   "depends_on": [
+    "MemBudget"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0420",
+    "slot6": "0xA0430",
+    "slot7": "0xA0400",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0410"
+   }
+  },
+  {
+   "object": "0x2F3A94",
+   "name": "AnimCam",
+   "vtable": "0x1F96F8",
+   "depends_on": [
+    "MotionObject(Motion)",
+    "PitCrewDM(Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0460",
+    "slot6": "0xA0480",
+    "slot7": "0xA0440",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0450"
+   }
+  },
+  {
+   "object": "0x2F3AA4",
+   "name": "Camera",
+   "vtable": "0x1F9728",
+   "depends_on": [
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA04C0",
+    "slot6": "0xA04F0",
+    "slot7": "0xA04A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA04B0"
+   }
+  },
+  {
+   "object": "0x2F3AB4",
+   "name": "Demo Camera",
+   "vtable": "0x1F9758",
+   "depends_on": [
+    "Camera"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0520",
+    "slot6": "0xA0530",
+    "slot7": "0xA0500",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0510"
+   }
+  },
+  {
+   "object": "0x2F3AC4",
+   "name": "Demo Camera Enable",
+   "vtable": "0x1F978C",
+   "depends_on": [
+    "Camera",
+    "Demo Camera",
+    "Demo Camera Vpt"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0560",
+    "slot6": "0xA05C0",
+    "slot7": "0xA0540",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0550"
+   }
+  },
+  {
+   "object": "0x2F3AD4",
+   "name": "Demo Camera Vpt",
+   "vtable": "0x1F97C8",
+   "depends_on": [
+    "Camera",
+    "Track(Logical)",
+    "Line",
+    "Demo Camera"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0600",
+    "slot6": "0xA0630",
+    "slot7": "0xA05D0",
+    "slot8": "0xA05E0",
+    "slot9": "0xA05F0"
+   }
+  },
+  {
+   "object": "0x2F3AE4",
+   "name": "MemBudget",
+   "vtable": "0x1F9800",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA0690",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA0660",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0670"
+   }
+  },
+  {
+   "object": "0x2F3AF4",
+   "name": "CarResource",
+   "vtable": "0x1F9834",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0700",
+    "slot6": "0xA0710",
+    "slot7": "0xA06E0",
+    "slot8": "0xA06F0",
+    "slot9": "0xA0740"
+   }
+  },
+  {
+   "object": "0x2F3B04",
+   "name": "CarResource",
+   "vtable": "0x1F9868",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0750",
+    "slot6": "0xA07D0",
+    "slot7": "0xA0720",
+    "slot8": "0xA0730",
+    "slot9": "0xA0740"
+   }
+  },
+  {
+   "object": "0x2F3B14",
+   "name": "DB",
+   "vtable": "0x1F98A0",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA08A0",
+    "slot6": "0xA0940",
+    "slot7": "0xA0880",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0890"
+   }
+  },
+  {
+   "object": "0x2F3B24",
+   "name": "DB Constants",
+   "vtable": "0x1F995C",
+   "depends_on": [
+    "DB",
+    "Sort"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0980",
+    "slot6": "0xA0990",
+    "slot7": "0xA0960",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0970"
+   }
+  },
+  {
+   "object": "0x2F3B34",
+   "name": "EASportsBIO",
+   "vtable": "0x1F9994",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA09D0",
+    "slot6": "0xA09F0",
+    "slot7": "0xA09A0",
+    "slot8": "0xA09B0",
+    "slot9": "0xA09C0"
+   }
+  },
+  {
+   "object": "0x2F3B44",
+   "name": "EffectResource",
+   "vtable": "0x1F99C8",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0A40",
+    "slot6": "0xA0A50",
+    "slot7": "0xA0A10",
+    "slot8": "0xA0A20",
+    "slot9": "0xA0A30"
+   }
+  },
+  {
+   "object": "0x2F3B54",
+   "name": "FileCache",
+   "vtable": "0x1F9A00",
+   "depends_on": [
+    "FileIO"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0A80",
+    "slot6": "0xA05C0",
+    "slot7": "0xA0A60",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0A70"
+   }
+  },
+  {
+   "object": "0x2F3B64",
+   "name": "FileCacheProcess",
+   "vtable": "0x1F9A34",
+   "depends_on": [
+    "FileCache"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0AB0",
+    "slot6": "0xA0AC0",
+    "slot7": "0xA0A90",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0AA0"
+   }
+  },
+  {
+   "object": "0x2F3B74",
+   "name": "Font",
+   "vtable": "0x1F9A70",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0AF0",
+    "slot6": "0xA0B00",
+    "slot7": "0xA0AD0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0AE0"
+   }
+  },
+  {
+   "object": "0x2F3B84",
+   "name": "QuickloadFrontend",
+   "vtable": "0x1F9AA0",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0B30",
+    "slot6": "0xA0B50",
+    "slot7": "0xA0B10",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0B20"
+   }
+  },
+  {
+   "object": "0x2F3B94",
+   "name": "QuickloadInGame",
+   "vtable": "0x1F9ADC",
+   "depends_on": [
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0B80",
+    "slot6": "0xA0BA0",
+    "slot7": "0xA0B60",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0B70"
+   }
+  },
+  {
+   "object": "0x2F3BA4",
+   "name": "Resource",
+   "vtable": "0x1F9B14",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0BD0",
+    "slot6": "0xA0BF0",
+    "slot7": "0xA0BB0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0BC0"
+   }
+  },
+  {
+   "object": "0x2F3BB4",
+   "name": "Career",
+   "vtable": "0x1F9B48",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0C20",
+    "slot6": "0xA0C50",
+    "slot7": "0xA0C00",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0C10"
+   }
+  },
+  {
+   "object": "0x2F3BC4",
+   "name": "Lightning Module",
+   "vtable": "0x1F9B78",
+   "depends_on": [
+    "DB"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0CB0",
+    "slot6": "0xA0CD0",
+    "slot7": "0xA0CA0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0C90"
+   }
+  },
+  {
+   "object": "0x2F3BD4",
+   "name": "Quick Race",
+   "vtable": "0x1F9BB4",
+   "depends_on": [
+    "DB"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0D00",
+    "slot6": "0xA0D30",
+    "slot7": "0xA0CE0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0CF0"
+   }
+  },
+  {
+   "object": "0x2F3BE4",
+   "name": "Season",
+   "vtable": "0x1F9C18",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0D60",
+    "slot6": "0xA0D80",
+    "slot7": "0xA0D40",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0D50"
+   }
+  },
+  {
+   "object": "0x2F3BF4",
+   "name": "SpeedZone Module",
+   "vtable": "0x1F9C48",
+   "depends_on": [
+    "DB",
+    "EventQueue"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0DD0",
+    "slot6": "0xA0DF0",
+    "slot7": "0xA0DC0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0DB0"
+   }
+  },
+  {
+   "object": "0x2F3C04",
+   "name": "ForceFeedback",
+   "vtable": "0x1F9C84",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA0E00",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0E10"
+   }
+  },
+  {
+   "object": "0x2F3C14",
+   "name": "RespectInd",
+   "vtable": "0x1F9CBC",
+   "depends_on": [
+    "UISInGame",
+    "Race Monitor",
+    "Car(Logical)",
+    "SmallNumInGame"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA0E40",
+    "slot6": "0xA0E50",
+    "slot7": "0xA0E20",
+    "slot8": "0x126CF0",
+    "slot9": "0xA0E30"
+   }
+  },
+  {
+   "object": "0x2F3C24",
+   "name": "SmallNumInGame",
+   "vtable": "0x1F9CF0",
+   "depends_on": [
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1040",
+    "slot6": "0xA1060",
+    "slot7": "0xA1020",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1030"
+   }
+  },
+  {
+   "object": "0x2F3C34",
+   "name": "UISSessionInfo",
+   "vtable": "0x1F9E04",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA10B0",
+    "slot6": "0xA10E0",
+    "slot7": "0xA1080",
+    "slot8": "0xA1090",
+    "slot9": "0xA10A0"
+   }
+  },
+  {
+   "object": "0x2F3C44",
+   "name": "UISCarObj",
+   "vtable": "0x1F9E3C",
+   "depends_on": [
+    "Resource",
+    "UISFrontEnd",
+    "CarResource",
+    "CarResource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1110",
+    "slot6": "0xA11B0",
+    "slot7": "0xA10F0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1100"
+   }
+  },
+  {
+   "object": "0x2F3C54",
+   "name": "UISChat",
+   "vtable": "0x1F9E70",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA11E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA11F0"
+   }
+  },
+  {
+   "object": "0x2F3C64",
+   "name": "UISCommon",
+   "vtable": "0x1F9EA0",
+   "depends_on": [
+    "UIStudio"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1260",
+    "slot6": "0xA1370",
+    "slot7": "0xA1240",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1250"
+   }
+  },
+  {
+   "object": "0x2F3C74",
+   "name": "UISController",
+   "vtable": "0x1F9ED4",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1430",
+    "slot6": "0xA1450",
+    "slot7": "0xA1400",
+    "slot8": "0xA1410",
+    "slot9": "0xA1420"
+   }
+  },
+  {
+   "object": "0x2F3C84",
+   "name": "UISDebug",
+   "vtable": "0x1F9F0C",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA1470",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1480"
+   }
+  },
+  {
+   "object": "0x2F3C94",
+   "name": "UISEATrax",
+   "vtable": "0x1F9F40",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA14C0",
+    "slot6": "0xA14F0",
+    "slot7": "0xA1490",
+    "slot8": "0xA14A0",
+    "slot9": "0xA14B0"
+   }
+  },
+  {
+   "object": "0x2F3CA4",
+   "name": "UISFlagObj",
+   "vtable": "0x1F9F74",
+   "depends_on": [
+    "Resource",
+    "UISFrontEnd"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1530",
+    "slot6": "0xA1540",
+    "slot7": "0xA1510",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1520"
+   }
+  },
+  {
+   "object": "0x2F3CB4",
+   "name": "UISFrontEnd",
+   "vtable": "0x1F9FA8",
+   "depends_on": [
+    "Motion Blur",
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1570",
+    "slot6": "0xA15F0",
+    "slot7": "0xA1550",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1560"
+   }
+  },
+  {
+   "object": "0x2F3CC4",
+   "name": "UISGauges",
+   "vtable": "0x1F9FDC",
+   "depends_on": [
+    "UISCommon",
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1660",
+    "slot6": "0xA1850",
+    "slot7": "0xA1630",
+    "slot8": "0xA1640",
+    "slot9": "0xA1650"
+   }
+  },
+  {
+   "object": "0x2F3CD4",
+   "name": "UISInGame",
+   "vtable": "0x1FA010",
+   "depends_on": [
+    "Game Manager",
+    "UISCommon",
+    "UISChat",
+    "UISSessionInfo",
+    "UISGauges"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1920",
+    "slot6": "0xA1970",
+    "slot7": "0xA1900",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1910"
+   }
+  },
+  {
+   "object": "0x2F3CE4",
+   "name": "UISMemoryCard",
+   "vtable": "0x1FA044",
+   "depends_on": [
+    "UISCommon"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA19A0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA1980",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1990"
+   }
+  },
+  {
+   "object": "0x2F3CF4",
+   "name": "UIStudio",
+   "vtable": "0x1FA07C",
+   "depends_on": [
+    "Glib",
+    "GlibRender",
+    "Viewport",
+    "Camera",
+    "Texture",
+    "Font",
+    "Object",
+    "VRAMHeapFE",
+    "Peripheral"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA19D0",
+    "slot6": "0xA19F0",
+    "slot7": "0xA19B0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA19C0"
+   }
+  },
+  {
+   "object": "0x2F3D04",
+   "name": "Loading...Coldboot",
+   "vtable": "0x1FA0B0",
+   "depends_on": [
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Texture",
+    "Math",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1A20",
+    "slot6": "0xA1A40",
+    "slot7": "0xA1A00",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1A10"
+   }
+  },
+  {
+   "object": "0x2F3D14",
+   "name": "Loading Demo",
+   "vtable": "0x1FA114",
+   "depends_on": [
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Texture",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1A80",
+    "slot6": "0xA1A90",
+    "slot7": "0xA1A60",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1A70"
+   }
+  },
+  {
+   "object": "0x2F3D24",
+   "name": "Loading Frontend",
+   "vtable": "0x1FA14C",
+   "depends_on": [
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Rand",
+    "Texture",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1AC0",
+    "slot6": "0xA1AF0",
+    "slot7": "0xA1AA0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1AB0"
+   }
+  },
+  {
+   "object": "0x2F3D34",
+   "name": "Loading Ingame",
+   "vtable": "0x1FA1B0",
+   "depends_on": [
+    "DB",
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Texture",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1B30",
+    "slot6": "0xA1B50",
+    "slot7": "0xA1B10",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1B20"
+   }
+  },
+  {
+   "object": "0x2F3D44",
+   "name": "Loading...Legal",
+   "vtable": "0x1FA20C",
+   "depends_on": [
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Texture",
+    "Math",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1B90",
+    "slot6": "0xA1BB0",
+    "slot7": "0xA1B70",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1B80"
+   }
+  },
+  {
+   "object": "0x2F3D54",
+   "name": "Loading...LegalOut",
+   "vtable": "0x1FA26C",
+   "depends_on": [
+    "DMA",
+    "Glib",
+    "GlibRender",
+    "Texture",
+    "Math",
+    "VRAMHeapFE"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1BF0",
+    "slot6": "0xA1C10",
+    "slot7": "0xA1BD0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1BE0"
+   }
+  },
+  {
+   "object": "0x2F3D64",
+   "name": "BodyDamage",
+   "vtable": "0x1FA2D8",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA1C30",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1C40"
+   }
+  },
+  {
+   "object": "0x2F3D74",
+   "name": "Collision",
+   "vtable": "0x1FA30C",
+   "depends_on": [
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1C70",
+    "slot6": "0xA1C80",
+    "slot7": "0xA1C50",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1C60"
+   }
+  },
+  {
+   "object": "0x2F3D84",
+   "name": "EASB Timer",
+   "vtable": "0x1FA334",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1CB0",
+    "slot6": "0xA1CD0",
+    "slot7": "0xA1C90",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1CA0"
+   }
+  },
+  {
+   "object": "0x2F3D94",
+   "name": "EnvMgr",
+   "vtable": "0x1FA368",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1D10",
+    "slot6": "0xA1D20",
+    "slot7": "0xA1CF0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1D00"
+   }
+  },
+  {
+   "object": "0x2F3DA4",
+   "name": "EventQueue",
+   "vtable": "0x1FA398",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1D50",
+    "slot6": "0xA1D60",
+    "slot7": "0xA1D30",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1D40"
+   }
+  },
+  {
+   "object": "0x2F3DB4",
+   "name": "Game Manager",
+   "vtable": "0x1FA3CC",
+   "depends_on": [
+    "DB",
+    "Time",
+    "Rand",
+    "Track(Logical)",
+    "User Profiles (in-game)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1D90",
+    "slot6": "0xA1DA0",
+    "slot7": "0xA1D70",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1D80"
+   }
+  },
+  {
+   "object": "0x2F3DC4",
+   "name": "Car(Logical)",
+   "vtable": "0x1FA404",
+   "depends_on": [
+    "Race Monitor",
+    "Track(Render)",
+    "EventQueue",
+    "AISpeeds"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1DD0",
+    "slot6": "0xA1DF0",
+    "slot7": "0xA1DB0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1DC0"
+   }
+  },
+  {
+   "object": "0x2F3DD4",
+   "name": "PitCrew (Logical)",
+   "vtable": "0x1FA43C",
+   "depends_on": [
+    "Track(Logical)",
+    "Line"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1E30",
+    "slot6": "0xA1E60",
+    "slot7": "0xA1E10",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1E20"
+   }
+  },
+  {
+   "object": "0x2F3DE4",
+   "name": "Track(Logical)",
+   "vtable": "0x1FA478",
+   "depends_on": [
+    "MemBudget"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1EB0",
+    "slot6": "0xA1EF0",
+    "slot7": "0xA1E90",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1EA0"
+   }
+  },
+  {
+   "object": "0x2F3DF4",
+   "name": "Pit Manager",
+   "vtable": "0x1FA4B0",
+   "depends_on": [
+    "Game Manager",
+    "Glib",
+    "GlibRender",
+    "Car(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1F50",
+    "slot6": "0xA1F60",
+    "slot7": "0xA1F30",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1F40"
+   }
+  },
+  {
+   "object": "0x2F3E04",
+   "name": "Race_Manager-Highlight",
+   "vtable": "0x1FA4E4",
+   "depends_on": [
+    "Race_Manager-Sys",
+    "Track(Render)",
+    "Sky(Render)",
+    "Race Manager-Debris",
+    "Car(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA1F90",
+    "slot6": "0xA1FF0",
+    "slot7": "0xA1F70",
+    "slot8": "0x126CF0",
+    "slot9": "0xA1F80"
+   }
+  },
+  {
+   "object": "0x2F3E14",
+   "name": "Race_Manager-Sys",
+   "vtable": "0x1FA524",
+   "depends_on": [
+    "Game Manager",
+    "AI",
+    "Glib",
+    "GlibRender",
+    "Track(Render)",
+    "Race Manager-Debris",
+    "Car(Logical)",
+    "Race Monitor"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2070",
+    "slot6": "0xA2080",
+    "slot7": "0xA2050",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2060"
+   }
+  },
+  {
+   "object": "0x2F3E24",
+   "name": "Race Monitor",
+   "vtable": "0x1FA560",
+   "depends_on": [
+    "Game Manager",
+    "Stat Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA20C0",
+    "slot6": "0xA20D0",
+    "slot7": "0xA20A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA20B0"
+   }
+  },
+  {
+   "object": "0x2F3E34",
+   "name": "Race Simulator",
+   "vtable": "0x1FA598",
+   "depends_on": [
+    "Game Manager",
+    "Stat Manager",
+    "Race Monitor",
+    "EventQueue"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA2100",
+    "slot7": "0xA20E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA20F0"
+   }
+  },
+  {
+   "object": "0x2F3E44",
+   "name": "ShareDraft",
+   "vtable": "0x1FA5D0",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2130",
+    "slot6": "0xA2140",
+    "slot7": "0xA2110",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2120"
+   }
+  },
+  {
+   "object": "0x2F3E54",
+   "name": "Stat Manager",
+   "vtable": "0x1FA604",
+   "depends_on": [
+    "DB"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2170",
+    "slot6": "0xA2180",
+    "slot7": "0xA2150",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2160"
+   }
+  },
+  {
+   "object": "0x2F3E64",
+   "name": "Animation",
+   "vtable": "0x1FA63C",
+   "depends_on": [
+    "MotionObject(Motion)",
+    "SharedMemAnimSound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA21B0",
+    "slot6": "0xA2280",
+    "slot7": "0xA2190",
+    "slot8": "0x126CF0",
+    "slot9": "0xA21A0"
+   }
+  },
+  {
+   "object": "0x2F3E74",
+   "name": "AnimVictoryLane",
+   "vtable": "0x1FA670",
+   "depends_on": [
+    "Game Manager",
+    "Glib",
+    "GlibRender",
+    "PitOfficial"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA22A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA22B0"
+   }
+  },
+  {
+   "object": "0x2F3E84",
+   "name": "MotionObject(Motion)",
+   "vtable": "0x1FA6A8",
+   "depends_on": [
+    "DM Shadow"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA22E0",
+    "slot6": "0xA22F0",
+    "slot7": "0xA22C0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA22D0"
+   }
+  },
+  {
+   "object": "0x2F3E94",
+   "name": "Object",
+   "vtable": "0x1FA6E8",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2320",
+    "slot6": "0xA2330",
+    "slot7": "0xA2300",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2310"
+   }
+  },
+  {
+   "object": "0x2F3EA4",
+   "name": "PitCrewDM(Render)",
+   "vtable": "0x1FA718",
+   "depends_on": [
+    "MotionObject(Motion)",
+    "Track(Logical)",
+    "Line",
+    "Car(Render)",
+    "SharedMemAnimSound",
+    "Animation",
+    "PitOfficial"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2360",
+    "slot6": "0xA2480",
+    "slot7": "0xA2340",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2350"
+   }
+  },
+  {
+   "object": "0x2F3EB4",
+   "name": "PitOfficial",
+   "vtable": "0x1FA754",
+   "depends_on": [
+    "MotionObject(Motion)",
+    "SharedMemAnimSound",
+    "Animation"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2520",
+    "slot6": "0xA2530",
+    "slot7": "0xA2500",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2510"
+   }
+  },
+  {
+   "object": "0x2F3EC4",
+   "name": "Celebration",
+   "vtable": "0x1FA788",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2570",
+    "slot6": "0xA2580",
+    "slot7": "0xA2540",
+    "slot8": "0xA2550",
+    "slot9": "0xA2560"
+   }
+  },
+  {
+   "object": "0x2F3ED4",
+   "name": "Highlight",
+   "vtable": "0x1FA7B0",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA25C0",
+    "slot6": "0xA2610",
+    "slot7": "0xA2590",
+    "slot8": "0xA25A0",
+    "slot9": "0xA25B0"
+   }
+  },
+  {
+   "object": "0x2F3EE4",
+   "name": "Marketing",
+   "vtable": "0x1FA7E4",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2660",
+    "slot6": "0xA2610",
+    "slot7": "0xA2630",
+    "slot8": "0xA2640",
+    "slot9": "0xA2650"
+   }
+  },
+  {
+   "object": "0x2F3EF4",
+   "name": "Pre Race",
+   "vtable": "0x1FA818",
+   "depends_on": [
+    "Game Manager",
+    "Race Monitor",
+    "ParticleSys",
+    "Sound (Effects)",
+    "PitCrewDM(Render)",
+    "AnimCam"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA26C0",
+    "slot6": "0xA26E0",
+    "slot7": "0xA26A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA26B0"
+   }
+  },
+  {
+   "object": "0x2F3F04",
+   "name": "Quick Caution",
+   "vtable": "0x1FA840",
+   "depends_on": [
+    "Track(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2720",
+    "slot6": "0xA2730",
+    "slot7": "0xA26F0",
+    "slot8": "0xA2700",
+    "slot9": "0xA2710"
+   }
+  },
+  {
+   "object": "0x2F3F14",
+   "name": "Race_Intro",
+   "vtable": "0x1FA878",
+   "depends_on": [
+    "Game Manager",
+    "Race Monitor"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2760",
+    "slot6": "0xA2780",
+    "slot7": "0xA2740",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2750"
+   }
+  },
+  {
+   "object": "0x2F3F24",
+   "name": "Race_PreGreen",
+   "vtable": "0x1FA8AC",
+   "depends_on": [
+    "Game Manager",
+    "Quick Caution"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA27B0",
+    "slot6": "0xA27E0",
+    "slot7": "0xA2790",
+    "slot8": "0x126CF0",
+    "slot9": "0xA27A0"
+   }
+  },
+  {
+   "object": "0x2F3F34",
+   "name": "VictoryLane",
+   "vtable": "0x1FA8E4",
+   "depends_on": [
+    "Resource",
+    "Track(Logical)",
+    "AnimVictoryLane",
+    "Car(Logical)",
+    "Time",
+    "Rand",
+    "Game Manager",
+    "Sound (Data)",
+    "EnvMgr",
+    "Simple Object",
+    "Glib",
+    "GlibRender",
+    "ParticleSys",
+    "MotionObject(Motion)",
+    "Camera",
+    "Sky(Render)",
+    "Car(Render)",
+    "Sound (Effects)",
+    "Motion Blur",
+    "Sound (SwapPreRace)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2830",
+    "slot6": "0xA2840",
+    "slot7": "0xA2800",
+    "slot8": "0xA2810",
+    "slot9": "0xA2820"
+   }
+  },
+  {
+   "object": "0x2F3F44",
+   "name": "Wreck Replay",
+   "vtable": "0x1FA918",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2880",
+    "slot6": "0xA28A0",
+    "slot7": "0xA2850",
+    "slot8": "0xA2860",
+    "slot9": "0xA2870"
+   }
+  },
+  {
+   "object": "0x2F3F54",
+   "name": "GlibRender",
+   "vtable": "0x1FA950",
+   "depends_on": [
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA28D0",
+    "slot6": "0xA28D0",
+    "slot7": "0xA28B0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA28C0"
+   }
+  },
+  {
+   "object": "0x2F3F64",
+   "name": "Motion Blur",
+   "vtable": "0x1FA984",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2900",
+    "slot6": "0xA2910",
+    "slot7": "0xA28E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA28F0"
+   }
+  },
+  {
+   "object": "0x2F3F74",
+   "name": "RaceVpt",
+   "vtable": "0x1FA9B8",
+   "depends_on": [
+    "Track(Logical)",
+    "Line",
+    "Car(Logical)",
+    "Demo Camera"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2950",
+    "slot6": "0xA2AF0",
+    "slot7": "0xA2920",
+    "slot8": "0xA2930",
+    "slot9": "0xA2940"
+   }
+  },
+  {
+   "object": "0x2F3F84",
+   "name": "HeatShimmer",
+   "vtable": "0x1FA9E8",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2BB0",
+    "slot6": "0xA2BC0",
+    "slot7": "0xA2B90",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2BA0"
+   }
+  },
+  {
+   "object": "0x2F3F94",
+   "name": "Texture",
+   "vtable": "0x1FAA1C",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2BF0",
+    "slot6": "0xA2C10",
+    "slot7": "0xA2BD0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2BE0"
+   }
+  },
+  {
+   "object": "0x2F3FA4",
+   "name": "Viewport",
+   "vtable": "0x1FAA4C",
+   "depends_on": [
+    "Matrix",
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2C40",
+    "slot6": "0xA2C60",
+    "slot7": "0xA2C20",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2C30"
+   }
+  },
+  {
+   "object": "0x2F3FB4",
+   "name": "Car Shadow",
+   "vtable": "0x1FAA80",
+   "depends_on": [
+    "Track(Render)",
+    "Track(Logical)",
+    "EffectResource",
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2C90",
+    "slot6": "0xA2CA0",
+    "slot7": "0xA2C70",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2C80"
+   }
+  },
+  {
+   "object": "0x2F3FC4",
+   "name": "Custom PitBanner (Render)",
+   "vtable": "0x1FAAB4",
+   "depends_on": [
+    "Track(Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2CD0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA2CB0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2CC0"
+   }
+  },
+  {
+   "object": "0x2F3FD4",
+   "name": "DM Shadow",
+   "vtable": "0x1FAAF8",
+   "depends_on": [
+    "Track(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2D00",
+    "slot6": "0xA2D10",
+    "slot7": "0xA2CE0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2CF0"
+   }
+  },
+  {
+   "object": "0x2F3FE4",
+   "name": "IBL",
+   "vtable": "0x1FAB2C",
+   "depends_on": [
+    "Track(Logical)",
+    "Line",
+    "AISpeeds"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2D40",
+    "slot6": "0xA2D50",
+    "slot7": "0xA2D20",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2D30"
+   }
+  },
+  {
+   "object": "0x2F3FF4",
+   "name": "Marks",
+   "vtable": "0x1FAB58",
+   "depends_on": [
+    "EventQueue",
+    "Game Manager",
+    "GlibRender",
+    "EffectResource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2D80",
+    "slot6": "0xA2D90",
+    "slot7": "0xA2D60",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2D70"
+   }
+  },
+  {
+   "object": "0x2F4004",
+   "name": "ParticleSys",
+   "vtable": "0x1FAB88",
+   "depends_on": [
+    "Car(Render)",
+    "Game Manager",
+    "GlibRender",
+    "EffectResource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2DC0",
+    "slot6": "0xA2E00",
+    "slot7": "0xA2DA0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2DB0"
+   }
+  },
+  {
+   "object": "0x2F4014",
+   "name": "PitBanner (Render)",
+   "vtable": "0x1FABBC",
+   "depends_on": [
+    "Car(Logical)",
+    "Track(Render)",
+    "Custom PitBanner (Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2E40",
+    "slot6": "0xA05C0",
+    "slot7": "0xA2E20",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2E30"
+   }
+  },
+  {
+   "object": "0x2F4024",
+   "name": "Race Manager-Debris",
+   "vtable": "0x1FABF8",
+   "depends_on": [
+    "Track(Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2E70",
+    "slot6": "0xA2E80",
+    "slot7": "0xA2E50",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2E60"
+   }
+  },
+  {
+   "object": "0x2F4034",
+   "name": "Car(Render)",
+   "vtable": "0x1FAC34",
+   "depends_on": [
+    "Track(Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2EB0",
+    "slot6": "0xA2EC0",
+    "slot7": "0xA2E90",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2EA0"
+   }
+  },
+  {
+   "object": "0x2F4044",
+   "name": "Render Logical Car",
+   "vtable": "0x1FAC68",
+   "depends_on": [
+    "Car(Logical)",
+    "Car(Render)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2EF0",
+    "slot6": "0xA2F00",
+    "slot7": "0xA2ED0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2EE0"
+   }
+  },
+  {
+   "object": "0x2F4054",
+   "name": "Sky(Render)",
+   "vtable": "0x1FACA4",
+   "depends_on": [
+    "EffectResource",
+    "EnvMgr"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2F30",
+    "slot6": "0xA2F70",
+    "slot7": "0xA2F10",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2F20"
+   }
+  },
+  {
+   "object": "0x2F4064",
+   "name": "Track(Render)",
+   "vtable": "0x1FACD8",
+   "depends_on": [
+    "EffectResource",
+    "MemBudget",
+    "EnvMgr",
+    "Track(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA2FC0",
+    "slot6": "0xA2FD0",
+    "slot7": "0xA2FA0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2FB0"
+   }
+  },
+  {
+   "object": "0x2F4074",
+   "name": "Simple Object",
+   "vtable": "0x1FAD10",
+   "depends_on": [
+    "Game Manager",
+    "Glib",
+    "GlibRender",
+    "Line",
+    "AISpeeds"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3000",
+    "slot6": "0xA3010",
+    "slot7": "0xA2FE0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA2FF0"
+   }
+  },
+  {
+   "object": "0x2F4084",
+   "name": "SZBlockArrow",
+   "vtable": "0x1FAD48",
+   "depends_on": [
+    "EffectResource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3040",
+    "slot6": "0xA3050",
+    "slot7": "0xA3020",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3030"
+   }
+  },
+  {
+   "object": "0x2F4094",
+   "name": "TrackMap",
+   "vtable": "0x1FAD80",
+   "depends_on": [
+    "Track(Logical)",
+    "Line"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3080",
+    "slot6": "0xA3090",
+    "slot7": "0xA3060",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3070"
+   }
+  },
+  {
+   "object": "0x2F40A4",
+   "name": "Game Settings",
+   "vtable": "0x1FADB4",
+   "depends_on": [
+    "DB"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA30C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA30A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA30B0"
+   }
+  },
+  {
+   "object": "0x2F40B4",
+   "name": "User Files",
+   "vtable": "0x1FADEC",
+   "depends_on": [
+    "User Profiles"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3100",
+    "slot6": "0xA3110",
+    "slot7": "0xA30E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA30F0"
+   }
+  },
+  {
+   "object": "0x2F40C4",
+   "name": "User Profiles",
+   "vtable": "0x1FAE20",
+   "depends_on": [
+    "DB",
+    "DB Constants"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3140",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3120",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3130"
+   }
+  },
+  {
+   "object": "0x2F40D4",
+   "name": "User Profiles (in-game)",
+   "vtable": "0x1FAE58",
+   "depends_on": [
+    "User Profiles"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3170",
+    "slot6": "0xA31C0",
+    "slot7": "0xA3150",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3160"
+   }
+  },
+  {
+   "object": "0x2F40E4",
+   "name": "Music",
+   "vtable": "0x1FAE98",
+   "depends_on": [
+    "Sound",
+    "DB",
+    "Rand"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3200",
+    "slot6": "0xA3220",
+    "slot7": "0xA31E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA31F0"
+   }
+  },
+  {
+   "object": "0x2F40F4",
+   "name": "Sound",
+   "vtable": "0x1FAEC8",
+   "depends_on": [
+    "FileIO",
+    "Resource",
+    "Sound (Minimal)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3250",
+    "slot6": "0xA3260",
+    "slot7": "0xA3230",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3240"
+   }
+  },
+  {
+   "object": "0x2F4104",
+   "name": "Sound (Collision)",
+   "vtable": "0x1FAEF8",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3290",
+    "slot6": "0xA32A0",
+    "slot7": "0xA3270",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3280"
+   }
+  },
+  {
+   "object": "0x2F4114",
+   "name": "Sound (Damage)",
+   "vtable": "0x1FAF34",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA32D0",
+    "slot6": "0xA32E0",
+    "slot7": "0xA32B0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA32C0"
+   }
+  },
+  {
+   "object": "0x2F4124",
+   "name": "Sound (Data)",
+   "vtable": "0x1FAF6C",
+   "depends_on": [
+    "Sound",
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3320",
+    "slot6": "0xA33E0",
+    "slot7": "0xA32F0",
+    "slot8": "0xA3300",
+    "slot9": "0xA3310"
+   }
+  },
+  {
+   "object": "0x2F4134",
+   "name": "Sound (Debris)",
+   "vtable": "0x1FB020",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3450",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3430",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3440"
+   }
+  },
+  {
+   "object": "0x2F4144",
+   "name": "Sound (Effects)",
+   "vtable": "0x1FB058",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3480",
+    "slot6": "0xA3480",
+    "slot7": "0xA3460",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3470"
+   }
+  },
+  {
+   "object": "0x2F4154",
+   "name": "Sound (Engine)",
+   "vtable": "0x1FB090",
+   "depends_on": [
+    "FileIO",
+    "Resource",
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA34B0",
+    "slot6": "0xA34C0",
+    "slot7": "0xA3490",
+    "slot8": "0x126CF0",
+    "slot9": "0xA34A0"
+   }
+  },
+  {
+   "object": "0x2F4164",
+   "name": "FakeDoppler",
+   "vtable": "0x1FB0C8",
+   "depends_on": [
+    "Sound",
+    "SharedMemAnimSound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3500",
+    "slot6": "0xA3510",
+    "slot7": "0xA34D0",
+    "slot8": "0xA34E0",
+    "slot9": "0xA34F0"
+   }
+  },
+  {
+   "object": "0x2F4174",
+   "name": "Sound (Frontend)",
+   "vtable": "0x1FB0FC",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3550",
+    "slot6": "0xA3570",
+    "slot7": "0xA3520",
+    "slot8": "0xA3530",
+    "slot9": "0xA3540"
+   }
+  },
+  {
+   "object": "0x2F4184",
+   "name": "Sound (Game)",
+   "vtable": "0x1FB138",
+   "depends_on": [
+    "Car(Logical)",
+    "Sound",
+    "Sound (Data)",
+    "Sound (Collision)",
+    "Sound (Damage)",
+    "Sound (Debris)",
+    "Sound (Effects)",
+    "Sound (Engine)",
+    "Sound (Pit)",
+    "Sound (Scrapes)",
+    "Sound (Tires)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA35A0",
+    "slot6": "0xA35B0",
+    "slot7": "0xA3580",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3590"
+   }
+  },
+  {
+   "object": "0x2F4194",
+   "name": "Sound (Minimal)",
+   "vtable": "0x1FB170",
+   "depends_on": [
+    "FileIO",
+    "Resource"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA35E0",
+    "slot6": "0xA35F0",
+    "slot7": "0xA35C0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA35D0"
+   }
+  },
+  {
+   "object": "0x2F41A4",
+   "name": "Sound (Pit)",
+   "vtable": "0x1FB1A8",
+   "depends_on": [
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3620",
+    "slot6": "0xA3630",
+    "slot7": "0xA3600",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3610"
+   }
+  },
+  {
+   "object": "0x2F41B4",
+   "name": "Sound (Scrapes)",
+   "vtable": "0x1FB1DC",
+   "depends_on": [
+    "FileIO",
+    "Resource",
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3660",
+    "slot6": "0xA3670",
+    "slot7": "0xA3640",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3650"
+   }
+  },
+  {
+   "object": "0x2F41C4",
+   "name": "Sound (SwapCrash)",
+   "vtable": "0x1FB214",
+   "depends_on": [
+    "Sound",
+    "Sound (Data)",
+    "Sound (Game)",
+    "SharedMemAnimSound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA36B0",
+    "slot6": "0xA3700",
+    "slot7": "0xA3680",
+    "slot8": "0xA3690",
+    "slot9": "0xA36A0"
+   }
+  },
+  {
+   "object": "0x2F41D4",
+   "name": "Sound (SwapPreRace)",
+   "vtable": "0x1FB250",
+   "depends_on": [
+    "Sound",
+    "Sound (Data)",
+    "Sound (Game)",
+    "SharedMemAnimSound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3750",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3720",
+    "slot8": "0xA3730",
+    "slot9": "0xA3740"
+   }
+  },
+  {
+   "object": "0x2F41E4",
+   "name": "Sound (Tires)",
+   "vtable": "0x1FB28C",
+   "depends_on": [
+    "FileIO",
+    "Resource",
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3790",
+    "slot6": "0xA37A0",
+    "slot7": "0xA3770",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3780"
+   }
+  },
+  {
+   "object": "0x2F41F4",
+   "name": "Sound (Wind noise)",
+   "vtable": "0x1FB2C4",
+   "depends_on": [
+    "FileIO",
+    "Resource",
+    "Sound"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA37D0",
+    "slot6": "0xA37E0",
+    "slot7": "0xA37B0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA37C0"
+   }
+  },
+  {
+   "object": "0x2F4204",
+   "name": "Speech",
+   "vtable": "0x1FB300",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3810",
+    "slot6": "0xA3820",
+    "slot7": "0xA37F0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3800"
+   }
+  },
+  {
+   "object": "0x2F4214",
+   "name": "SharedMemAnimSound",
+   "vtable": "0x1FB330",
+   "depends_on": [
+    "SharedMem"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3850",
+    "slot6": "0xA3870",
+    "slot7": "0xA3830",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3840"
+   }
+  },
+  {
+   "object": "0x2F4224",
+   "name": "Debug",
+   "vtable": "0x1FB36C",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3880",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3890"
+   }
+  },
+  {
+   "object": "0x2F4234",
+   "name": "Line",
+   "vtable": "0x1FB39C",
+   "depends_on": [
+    "Track(Logical)"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA38A0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA38B0"
+   }
+  },
+  {
+   "object": "0x2F4244",
+   "name": "Math",
+   "vtable": "0x1FB3CC",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA38E0",
+    "slot6": "0xA38F0",
+    "slot7": "0xA38C0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA38D0"
+   }
+  },
+  {
+   "object": "0x2F4254",
+   "name": "Matrix",
+   "vtable": "0x1FB3FC",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3920",
+    "slot6": "0xA3950",
+    "slot7": "0xA3900",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3910"
+   }
+  },
+  {
+   "object": "0x2F4264",
+   "name": "MemoryCard",
+   "vtable": "0x1FB42C",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3990",
+    "slot6": "0xA39B0",
+    "slot7": "0xA3970",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3980"
+   }
+  },
+  {
+   "object": "0x2F4274",
+   "name": "Oscilloscope",
+   "vtable": "0x1FB460",
+   "depends_on": [
+    "Glib"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA39C0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA39D0"
+   }
+  },
+  {
+   "object": "0x2F4284",
+   "name": "Peripheral",
+   "vtable": "0x1FB498",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3A00",
+    "slot6": "0xA3AA0",
+    "slot7": "0xA39E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA39F0"
+   }
+  },
+  {
+   "object": "0x2F4294",
+   "name": "Profile",
+   "vtable": "0x1FB4CC",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3AD0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3AE0"
+   }
+  },
+  {
+   "object": "0x2F42A4",
+   "name": "Rand",
+   "vtable": "0x1FB4FC",
+   "depends_on": [
+    "Time"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3B10",
+    "slot6": "0xA3B30",
+    "slot7": "0xA3AF0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3B00"
+   }
+  },
+  {
+   "object": "0x2F42B4",
+   "name": "SharedMem",
+   "vtable": "0x1FB52C",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3B60",
+    "slot6": "0xA3B70",
+    "slot7": "0xA3B40",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3B50"
+   }
+  },
+  {
+   "object": "0x2F42C4",
+   "name": "Sort",
+   "vtable": "0x1FB560",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3BA0",
+    "slot6": "0xA3BB0",
+    "slot7": "0xA3B80",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3B90"
+   }
+  },
+  {
+   "object": "0x2F42D4",
+   "name": "Time",
+   "vtable": "0x1FB590",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3BE0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3BC0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3BD0"
+   }
+  },
+  {
+   "object": "0x2F42E4",
+   "name": "USB",
+   "vtable": "0x1FB5C0",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3BF0",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3C00"
+   }
+  },
+  {
+   "object": "0x2F42F4",
+   "name": "VRAM",
+   "vtable": "0x1FB5EC",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA3C30",
+    "slot6": "0xA3C40",
+    "slot7": "0xA3C10",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3C20"
+   }
+  },
+  {
+   "object": "0x2F4304",
+   "name": "VRAMHeapFE",
+   "vtable": "0x1FB61C",
+   "depends_on": [
+    "VRAM"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0xA3C50",
+    "slot8": "0x126CF0",
+    "slot9": "0xA3C60"
+   }
+  },
+  {
+   "object": "0x2F4318",
+   "name": "BlackFlag",
+   "vtable": "0x1FD134",
+   "depends_on": [
+    "Game Manager"
+   ],
+   "methods": {
+    "slot0": "0xB1200",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xB1100",
+    "slot6": "0xB1180",
+    "slot7": "0xB10E0",
+    "slot8": "0x126CF0",
+    "slot9": "0xB10F0"
+   }
+  },
+  {
+   "object": "0x2F4490",
+   "name": "USB Keyboard",
+   "vtable": "0x202DEC",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0x103BA0",
+    "slot8": "0x103BB0",
+    "slot9": "0x103BC0"
+   }
+  },
+  {
+   "object": "0x2F44A0",
+   "name": "DMA",
+   "vtable": "0x202E24",
+   "depends_on": [
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0x103BD0",
+    "slot8": "0x126CF0",
+    "slot9": "0x103BE0"
+   }
+  },
+  {
+   "object": "0x2F44B0",
+   "name": "DMAMem",
+   "vtable": "0x202E50",
+   "depends_on": [
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0x103BF0",
+    "slot8": "0x126CF0",
+    "slot9": "0x103C00"
+   }
+  },
+  {
+   "object": "0x2F44C0",
+   "name": "DMAResizeFEToRace",
+   "vtable": "0x202E80",
+   "depends_on": [
+    "GlibRender"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0x103C10",
+    "slot8": "0x126CF0",
+    "slot9": "0x103C20"
+   }
+  },
+  {
+   "object": "0x2F44D0",
+   "name": "DMAResizeRaceToFE",
+   "vtable": "0x202EBC",
+   "depends_on": [
+    "GlibRender"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0xA05C0",
+    "slot6": "0xA05C0",
+    "slot7": "0x103C30",
+    "slot8": "0x126CF0",
+    "slot9": "0x103C40"
+   }
+  },
+  {
+   "object": "0x2F44E0",
+   "name": "FileIO",
+   "vtable": "0x202EF8",
+   "depends_on": [],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0x103C70",
+    "slot6": "0xA05C0",
+    "slot7": "0x103C50",
+    "slot8": "0x126CF0",
+    "slot9": "0x103C60"
+   }
+  },
+  {
+   "object": "0x2F44F0",
+   "name": "Glib",
+   "vtable": "0x202F30",
+   "depends_on": [
+    "Object"
+   ],
+   "methods": {
+    "slot0": "0xA06C0",
+    "slot1": "0xA0380",
+    "slot2": "0xE42A0",
+    "slot3": "0xA0390",
+    "slot4": "0xE42A0",
+    "slot5": "0x103F40",
+    "slot6": "0x104090",
+    "slot7": "0x103F20",
+    "slot8": "0x126CF0",
+    "slot9": "0x103F30"
+   }
+  }
+ ]
+}

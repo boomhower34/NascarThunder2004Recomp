@@ -1,0 +1,345 @@
+{
+ "MOVIES.DAT": {
+  "entries": 54,
+  "video": "mad 640x448",
+  "audio": "adpcm_ea_r1 48 kHz stereo",
+  "content": "#0 EA Sports logo (4.0 s, boot, unskippable); #1-53 driver clips ~4-8 s (boot plays a random one of #1-49)",
+  "used_by": "PlayMovie 0x73840 via 0x9DE15/0x9DE26 (boot), 0x73930/0x73947"
+ },
+ "PRMOVIES.DAT": {
+  "entries": 5,
+  "video": "mad 640x448",
+  "content": "long movies (#0 = 96 s)",
+  "used_by": "0x73850 (switch on event id)"
+ },
+ "UIS_VIDE.DAT": {
+  "entries": 5,
+  "content": "silent race-footage loops, probably frontend background videos",
+  "used_by": "UI file table 0x21FD90 index 14",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 74.2,
+    "video": "mad 320x240",
+    "audio": null
+   },
+   {
+    "index": 1,
+    "seconds": 74.2,
+    "video": "mad 320x240",
+    "audio": null
+   },
+   {
+    "index": 2,
+    "seconds": 74.2,
+    "video": "mad 320x240",
+    "audio": null
+   },
+   {
+    "index": 3,
+    "seconds": 74.2,
+    "video": "mad 320x240",
+    "audio": null
+   },
+   {
+    "index": 4,
+    "seconds": 74.2,
+    "video": "mad 320x240",
+    "audio": null
+   }
+  ]
+ },
+ "WHATSNEW.DAT": {
+  "entries": 1,
+  "content": "4-minute gameplay showcase ('What's New' feature video)",
+  "used_by": "opened directly by frontend code 0x8E622",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 247.1,
+    "video": "mad 640x448",
+    "audio": "adpcm_ea_r1 48000Hz 2ch"
+   }
+  ]
+ },
+ "UIS_CVD4.DAT": {
+  "entries": 3,
+  "content": "pit-lane driver interview videos",
+  "used_by": "UI file table index 18",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 79.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 1,
+    "seconds": 73.2,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 2,
+    "seconds": 92.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   }
+  ]
+ },
+ "UIS_CVD1.DAT": {
+  "entries": 13,
+  "content": "pit-lane driver interview videos",
+  "used_by": "UI file table index 15",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 55.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 1,
+    "seconds": 68.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 2,
+    "seconds": 39.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 3,
+    "seconds": 79.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 4,
+    "seconds": 65.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 5,
+    "seconds": 38.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 6,
+    "seconds": 63.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 7,
+    "seconds": 74.6,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 8,
+    "seconds": 68.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 9,
+    "seconds": 67.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 10,
+    "seconds": 60.7,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 11,
+    "seconds": 53.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 12,
+    "seconds": 33.3,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   }
+  ]
+ },
+ "UIS_CVD2.DAT": {
+  "entries": 13,
+  "content": "pit-lane driver interview videos",
+  "used_by": "UI file table index 16",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 47.2,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 1,
+    "seconds": 60.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 2,
+    "seconds": 117.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 3,
+    "seconds": 54.7,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 4,
+    "seconds": 42.4,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 5,
+    "seconds": 50.6,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 6,
+    "seconds": 49.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 7,
+    "seconds": 52.2,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 8,
+    "seconds": 60.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 9,
+    "seconds": 53.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 10,
+    "seconds": 54.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 11,
+    "seconds": 58.3,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 12,
+    "seconds": 57.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   }
+  ]
+ },
+ "UIS_CVD3.DAT": {
+  "entries": 13,
+  "content": "pit-lane driver interview videos",
+  "used_by": "UI file table index 17",
+  "clips": [
+   {
+    "index": 0,
+    "seconds": 50.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 1,
+    "seconds": 65.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 2,
+    "seconds": 64.7,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 3,
+    "seconds": 62.8,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 4,
+    "seconds": 65.2,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 5,
+    "seconds": 77.9,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 6,
+    "seconds": 71.4,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 7,
+    "seconds": 80.0,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 8,
+    "seconds": 46.2,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 9,
+    "seconds": 53.5,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 10,
+    "seconds": 78.4,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 11,
+    "seconds": 64.5,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   },
+   {
+    "index": 12,
+    "seconds": 79.1,
+    "video": "mad 320x240",
+    "audio": "adpcm_ea_r2 48000Hz 2ch"
+   }
+  ]
+ }
+}

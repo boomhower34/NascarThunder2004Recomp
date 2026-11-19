@@ -1,0 +1,48 @@
+# ---- the game: never commit (it comes from each player's own disc image)
+Data/
+*.xbe
+default.exe
+*.iso
+*.xiso
+*.DAT
+*.QKL
+NASCAR.DB
+
+# ---- built from the game's code on each machine
+recomp.json
+recomp.wasm
+recomp.wasm.gz
+recomp-native.json
+recomp-native-*.node
+recomp-native-*.node.gz
+jit-cache/
+
+# ---- the player's own data and settings
+save/
+roster/
+presets/
+textures/
+models/
+captures/
+exports/
+launcher-settings.json
+fs.log
+
+# ---- release builds and their download cache
+release/
+tools/llvm/
+
+# ---- local analysis dumps taken from the game (keep them on your own machine)
+nascar_db.json
+db_queries.json
+*.png
+*.wav
+*.bin
+
+# ---- Python / editors / OS
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

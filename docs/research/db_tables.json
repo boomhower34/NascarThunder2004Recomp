@@ -1,0 +1,799 @@
+{
+ "file": "NASCAR.DB",
+ "format": "EA 'DB' (header 'DB' 00 08)",
+ "table_count": 198,
+ "tables": [
+  {
+   "name": "ACMP",
+   "queries_using": 0
+  },
+  {
+   "name": "AIAV",
+   "queries_using": 0
+  },
+  {
+   "name": "AIBL",
+   "queries_using": 0
+  },
+  {
+   "name": "AIBD",
+   "queries_using": 0
+  },
+  {
+   "name": "AICA",
+   "queries_using": 0
+  },
+  {
+   "name": "AIDE",
+   "queries_using": 0
+  },
+  {
+   "name": "AIDS",
+   "queries_using": 0
+  },
+  {
+   "name": "AIER",
+   "queries_using": 0
+  },
+  {
+   "name": "ERBO",
+   "queries_using": 1
+  },
+  {
+   "name": "EREB",
+   "queries_using": 1
+  },
+  {
+   "name": "ERXB",
+   "queries_using": 1
+  },
+  {
+   "name": "ERLA",
+   "queries_using": 1
+  },
+  {
+   "name": "ERLB",
+   "queries_using": 1
+  },
+  {
+   "name": "ERLC",
+   "queries_using": 1
+  },
+  {
+   "name": "AIFO",
+   "queries_using": 0
+  },
+  {
+   "name": "AIFW",
+   "queries_using": 0
+  },
+  {
+   "name": "AILT",
+   "queries_using": 0
+  },
+  {
+   "name": "AIMA",
+   "queries_using": 0
+  },
+  {
+   "name": "AIPA",
+   "queries_using": 0
+  },
+  {
+   "name": "AIPD",
+   "queries_using": 0
+  },
+  {
+   "name": "AIPI",
+   "queries_using": 0
+  },
+  {
+   "name": "APRP",
+   "queries_using": 8
+  },
+  {
+   "name": "AIPR",
+   "queries_using": 0
+  },
+  {
+   "name": "AIRE",
+   "queries_using": 0
+  },
+  {
+   "name": "AIRP",
+   "queries_using": 1
+  },
+  {
+   "name": "ASEM",
+   "queries_using": 0
+  },
+  {
+   "name": "AISE",
+   "queries_using": 0
+  },
+  {
+   "name": "AISC",
+   "queries_using": 0
+  },
+  {
+   "name": "AISH",
+   "queries_using": 0
+  },
+  {
+   "name": "AISM",
+   "queries_using": 0
+  },
+  {
+   "name": "AISP",
+   "queries_using": 0
+  },
+  {
+   "name": "AIST",
+   "queries_using": 0
+  },
+  {
+   "name": "AISK",
+   "queries_using": 0
+  },
+  {
+   "name": "AITW",
+   "queries_using": 0
+  },
+  {
+   "name": "AITR",
+   "queries_using": 0
+  },
+  {
+   "name": "AIWP",
+   "queries_using": 0
+  },
+  {
+   "name": "AIWF",
+   "queries_using": 0
+  },
+  {
+   "name": "AIWS",
+   "queries_using": 0
+  },
+  {
+   "name": "ALEX",
+   "queries_using": 0
+  },
+  {
+   "name": "ASPS",
+   "queries_using": 2
+  },
+  {
+   "name": "AWTD",
+   "queries_using": 4
+  },
+  {
+   "name": "AWAR",
+   "queries_using": 1
+  },
+  {
+   "name": "AWAC",
+   "queries_using": 0
+  },
+  {
+   "name": "AWKY",
+   "queries_using": 5
+  },
+  {
+   "name": "AYRY",
+   "queries_using": 3
+  },
+  {
+   "name": "BLTM",
+   "queries_using": 6
+  },
+  {
+   "name": "CARS",
+   "queries_using": 139
+  },
+  {
+   "name": "CATT",
+   "queries_using": 0
+  },
+  {
+   "name": "CGIN",
+   "queries_using": 0
+  },
+  {
+   "name": "CCST",
+   "queries_using": 7
+  },
+  {
+   "name": "CRSK",
+   "queries_using": 23
+  },
+  {
+   "name": "CUST",
+   "queries_using": 0
+  },
+  {
+   "name": "CARD",
+   "queries_using": 17
+  },
+  {
+   "name": "EREP",
+   "queries_using": 2
+  },
+  {
+   "name": "COVL",
+   "queries_using": 1
+  },
+  {
+   "name": "CTPC",
+   "queries_using": 0
+  },
+  {
+   "name": "CGUR",
+   "queries_using": 2
+  },
+  {
+   "name": "CHRS",
+   "queries_using": 3
+  },
+  {
+   "name": "CHUL",
+   "queries_using": 1
+  },
+  {
+   "name": "CMUL",
+   "queries_using": 1
+  },
+  {
+   "name": "COSW",
+   "queries_using": 3
+  },
+  {
+   "name": "CLMD",
+   "queries_using": 0
+  },
+  {
+   "name": "CCFG",
+   "queries_using": 1
+  },
+  {
+   "name": "CCAR",
+   "queries_using": 10
+  },
+  {
+   "name": "CCCS",
+   "queries_using": 0
+  },
+  {
+   "name": "CPAL",
+   "queries_using": 5
+  },
+  {
+   "name": "DTGL",
+   "queries_using": 0
+  },
+  {
+   "name": "DTGS",
+   "queries_using": 0
+  },
+  {
+   "name": "DAIS",
+   "queries_using": 2
+  },
+  {
+   "name": "DCST",
+   "queries_using": 5
+  },
+  {
+   "name": "DSCC",
+   "queries_using": 5
+  },
+  {
+   "name": "DCPL",
+   "queries_using": 1
+  },
+  {
+   "name": "DPOP",
+   "queries_using": 0
+  },
+  {
+   "name": "DEMO",
+   "queries_using": 0
+  },
+  {
+   "name": "DIFF",
+   "queries_using": 4
+  },
+  {
+   "name": "DRVR",
+   "queries_using": 53
+  },
+  {
+   "name": "DRRS",
+   "queries_using": 26
+  },
+  {
+   "name": "DSKL",
+   "queries_using": 2
+  },
+  {
+   "name": "DRST",
+   "queries_using": 59
+  },
+  {
+   "name": "DCAR",
+   "queries_using": 6
+  },
+  {
+   "name": "DDRV",
+   "queries_using": 8
+  },
+  {
+   "name": "EADB",
+   "queries_using": 0
+  },
+  {
+   "name": "EAWD",
+   "queries_using": 0
+  },
+  {
+   "name": "ECCP",
+   "queries_using": 0
+  },
+  {
+   "name": "ECST",
+   "queries_using": 0
+  },
+  {
+   "name": "ECAR",
+   "queries_using": 0
+  },
+  {
+   "name": "ECSL",
+   "queries_using": 0
+  },
+  {
+   "name": "ECTY",
+   "queries_using": 0
+  },
+  {
+   "name": "ECRP",
+   "queries_using": 0
+  },
+  {
+   "name": "ECRS",
+   "queries_using": 0
+  },
+  {
+   "name": "DBRT",
+   "queries_using": 0
+  },
+  {
+   "name": "EDST",
+   "queries_using": 0
+  },
+  {
+   "name": "EDIF",
+   "queries_using": 0
+  },
+  {
+   "name": "ECNT",
+   "queries_using": 0
+  },
+  {
+   "name": "ERDT",
+   "queries_using": 0
+  },
+  {
+   "name": "ESKL",
+   "queries_using": 1
+  },
+  {
+   "name": "EMED",
+   "queries_using": 0
+  },
+  {
+   "name": "ESTY",
+   "queries_using": 0
+  },
+  {
+   "name": "ESPT",
+   "queries_using": 0
+  },
+  {
+   "name": "ESGL",
+   "queries_using": 0
+  },
+  {
+   "name": "CTTY",
+   "queries_using": 0
+  },
+  {
+   "name": "ETRT",
+   "queries_using": 0
+  },
+  {
+   "name": "EUFL",
+   "queries_using": 0
+  },
+  {
+   "name": "EWRT",
+   "queries_using": 0
+  },
+  {
+   "name": "FONT",
+   "queries_using": 0
+  },
+  {
+   "name": "CAIS",
+   "queries_using": 3
+  },
+  {
+   "name": "CGPL",
+   "queries_using": 11
+  },
+  {
+   "name": "GINF",
+   "queries_using": 83
+  },
+  {
+   "name": "GRIM",
+   "queries_using": 1
+  },
+  {
+   "name": "LCCH",
+   "queries_using": 1
+  },
+  {
+   "name": "LCMP",
+   "queries_using": 0
+  },
+  {
+   "name": "LCON",
+   "queries_using": 0
+  },
+  {
+   "name": "LSCO",
+   "queries_using": 4
+  },
+  {
+   "name": "LDTU",
+   "queries_using": 3
+  },
+  {
+   "name": "MSTK",
+   "queries_using": 0
+  },
+  {
+   "name": "MSON",
+   "queries_using": 0
+  },
+  {
+   "name": "MPLA",
+   "queries_using": 0
+  },
+  {
+   "name": "PCSY",
+   "queries_using": 0
+  },
+  {
+   "name": "PACP",
+   "queries_using": 1
+  },
+  {
+   "name": "PCAR",
+   "queries_using": 0
+  },
+  {
+   "name": "PCPL",
+   "queries_using": 0
+  },
+  {
+   "name": "PCSE",
+   "queries_using": 0
+  },
+  {
+   "name": "PGER",
+   "queries_using": 0
+  },
+  {
+   "name": "PMOM",
+   "queries_using": 0
+  },
+  {
+   "name": "PSUR",
+   "queries_using": 0
+  },
+  {
+   "name": "PTWS",
+   "queries_using": 0
+  },
+  {
+   "name": "PTOR",
+   "queries_using": 0
+  },
+  {
+   "name": "PTRF",
+   "queries_using": 0
+  },
+  {
+   "name": "PTSF",
+   "queries_using": 0
+  },
+  {
+   "name": "PEST",
+   "queries_using": 0
+  },
+  {
+   "name": "POPT",
+   "queries_using": 0
+  },
+  {
+   "name": "PNTS",
+   "queries_using": 3
+  },
+  {
+   "name": "PRST",
+   "queries_using": 2
+  },
+  {
+   "name": "PRFL",
+   "queries_using": 2
+  },
+  {
+   "name": "PPRE",
+   "queries_using": 21
+  },
+  {
+   "name": "PTRK",
+   "queries_using": 0
+  },
+  {
+   "name": "QUAL",
+   "queries_using": 16
+  },
+  {
+   "name": "QGEN",
+   "queries_using": 0
+  },
+  {
+   "name": "RACE",
+   "queries_using": 40
+  },
+  {
+   "name": "RSPR",
+   "queries_using": 0
+  },
+  {
+   "name": "RSTT",
+   "queries_using": 14
+  },
+  {
+   "name": "RWLV",
+   "queries_using": 0
+  },
+  {
+   "name": "SCCA",
+   "queries_using": 13
+  },
+  {
+   "name": "SPAL",
+   "queries_using": 8
+  },
+  {
+   "name": "SUNK",
+   "queries_using": 0
+  },
+  {
+   "name": "SCHD",
+   "queries_using": 11
+  },
+  {
+   "name": "SCMD",
+   "queries_using": 5
+  },
+  {
+   "name": "QSMT",
+   "queries_using": 1
+  },
+  {
+   "name": "CEAS",
+   "queries_using": 2
+  },
+  {
+   "name": "CCON",
+   "queries_using": 4
+  },
+  {
+   "name": "CDIS",
+   "queries_using": 9
+  },
+  {
+   "name": "SGPP",
+   "queries_using": 11
+  },
+  {
+   "name": "OSGP",
+   "queries_using": 3
+  },
+  {
+   "name": "SOLI",
+   "queries_using": 2
+  },
+  {
+   "name": "CSND",
+   "queries_using": 4
+  },
+  {
+   "name": "CSYS",
+   "queries_using": 2
+  },
+  {
+   "name": "CVID",
+   "queries_using": 0
+  },
+  {
+   "name": "SDPL",
+   "queries_using": 0
+  },
+  {
+   "name": "SDPR",
+   "queries_using": 0
+  },
+  {
+   "name": "SODR",
+   "queries_using": 0
+  },
+  {
+   "name": "SODD",
+   "queries_using": 0
+  },
+  {
+   "name": "SZIN",
+   "queries_using": 0
+  },
+  {
+   "name": "SZRS",
+   "queries_using": 1
+  },
+  {
+   "name": "SZTI",
+   "queries_using": 0
+  },
+  {
+   "name": "SPON",
+   "queries_using": 9
+  },
+  {
+   "name": "SPIN",
+   "queries_using": 7
+  },
+  {
+   "name": "TEAM",
+   "queries_using": 0
+  },
+  {
+   "name": "TRCK",
+   "queries_using": 29
+  },
+  {
+   "name": "TAUD",
+   "queries_using": 3
+  },
+  {
+   "name": "THLD",
+   "queries_using": 1
+  },
+  {
+   "name": "TFOG",
+   "queries_using": 0
+  },
+  {
+   "name": "TKSH",
+   "queries_using": 0
+  },
+  {
+   "name": "TKSK",
+   "queries_using": 1
+  },
+  {
+   "name": "TROP",
+   "queries_using": 3
+  },
+  {
+   "name": "TMLK",
+   "queries_using": 1
+  },
+  {
+   "name": "UNSK",
+   "queries_using": 1
+  },
+  {
+   "name": "ULCD",
+   "queries_using": 8
+  },
+  {
+   "name": "ULDR",
+   "queries_using": 13
+  },
+  {
+   "name": "ZBIA",
+   "queries_using": 0
+  },
+  {
+   "name": "CDRS",
+   "queries_using": 1
+  },
+  {
+   "name": "STAB",
+   "queries_using": 2
+  },
+  {
+   "name": "SBLT",
+   "queries_using": 0
+  },
+  {
+   "name": "SVCS",
+   "queries_using": 0
+  },
+  {
+   "name": "SCHR",
+   "queries_using": 0
+  },
+  {
+   "name": "SLSC",
+   "queries_using": 0
+  },
+  {
+   "name": "SPRO",
+   "queries_using": 0
+  },
+  {
+   "name": "SDGA",
+   "queries_using": 0
+  },
+  {
+   "name": "SCEA",
+   "queries_using": 0
+  },
+  {
+   "name": "SCCO",
+   "queries_using": 0
+  },
+  {
+   "name": "SCDI",
+   "queries_using": 0
+  },
+  {
+   "name": "SSGP",
+   "queries_using": 0
+  },
+  {
+   "name": "SSGO",
+   "queries_using": 0
+  },
+  {
+   "name": "SSOL",
+   "queries_using": 0
+  },
+  {
+   "name": "SSZR",
+   "queries_using": 0
+  },
+  {
+   "name": "STRO",
+   "queries_using": 0
+  },
+  {
+   "name": "SUNS",
+   "queries_using": 0
+  },
+  {
+   "name": "CSPB",
+   "queries_using": 0
+  },
+  {
+   "name": "CNST",
+   "queries_using": 1
+  }
+ ]
+}
