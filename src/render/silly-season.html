@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silly Season</title>
+<style>
+:root { --bg: #f4f5f7; --card: #fff; --ink: #1c2230; --dim: #687083; --line: #e2e5ea; --up: #1f8a4c; --down: #c23a32; --acc: #2457c5; --bar: #d9e2f5; }
+@media (prefers-color-scheme: dark) { :root { --bg: #14171d; --card: #1d212a; --ink: #e6e8ee; --dim: #9098aa; --line: #2c313c; --up: #4cc27f; --down: #ef6b62; --acc: #7aa2ff; --bar: #2a3550; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 1320px; margin: 0 auto; padding: 20px 16px 48px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 20px; margin-bottom: 16px; }
+h1 { font-size: 22px; margin: 0; }
+h2 { font-size: 16px; margin: 0 0 10px; }
+select, input[type=search] { font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+section { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+.dim { color: var(--dim); }
+.tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 10px; }
+.tools label { display: inline-flex; gap: 5px; align-items: center; }
+ul.moves { margin: 0; padding-left: 18px; }
+ul.moves li { margin: 2px 0; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { padding: 5px 8px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+th { font-weight: 600; color: var(--dim); font-size: 12px; cursor: pointer; user-select: none; position: sticky; top: 0; background: var(--card); }
+th.sorted::after { content: " \25BE"; } th.sorted.asc::after { content: " \25B4"; }
+td.l, th.l { text-align: left; }
+.up { color: var(--up); font-weight: 600; } .down { color: var(--down); font-weight: 600; } .same { color: var(--dim); }
+.d { display: inline-block; min-width: 3.2em; }
+.barcell { width: 30%; min-width: 120px; }
+.bar { position: relative; height: 10px; background: var(--bar); border-radius: 5px; }
+.bar i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 5px; background: var(--acc); }
+.bar b { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--dim); }
+.empty { color: var(--dim); font-style: italic; }
+</style></head>
+<body><main>
+<header><h1>Silly Season</h1><select id="pick" aria-label="Off-season"></select><span id="meta" class="dim"></span></header>
+<div id="out"><p class="empty">Loading…</p></div>
+</main>
+<script>
+const RAT = [["DSPD", "Speed"], ["DCTL", "Control"], ["DDEF", "Defense"], ["DAGR", "Aggr."], ["DDUR", "Durab."]];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = (v, dp = 0) => (v > 0 ? "+" : v < 0 ? "−" : "±") + Math.abs(v).toFixed(dp);
+const cls = v => v > 0 ? "up" : v < 0 ? "down" : "same";
+const delta = (v, dp = 0) => `<span class="d ${cls(v)}">${Math.abs(v) < 1e-9 ? "–" : fmt(v, dp)}</span>`;
+let reports = [], R = null;
+const view = { series: "all", changed: false, q: "", sort: "chg", asc: false, tsort: "after", tasc: false };
+try { Object.assign(view, JSON.parse(localStorage.getItem("ssView") || "{}")); } catch {}
+const keep = () => { try { localStorage.setItem("ssView", JSON.stringify(view)); } catch {} };
+
+async function load() {
+  try { reports = await (await fetch("/silly-season.json", { cache: "no-store" })).json(); } catch { reports = []; }
+  const pick = document.getElementById("pick");
+  pick.innerHTML = reports.map((r, i) => `<option value="${i}">After the ${r.year} season${r.time ? " · " + new Date(r.time).toLocaleString() : ""}</option>`).join("");
+  pick.style.display = reports.length ? "" : "none";
+  pick.onchange = () => show(+pick.value);
+  show(0);
+}
+function show(i) {
+  R = reports[i] ?? null;
+  const out = document.getElementById("out");
+  if (!R) { out.innerHTML = `<section><p class="empty">No silly season yet. It runs at the end of a career season with the silly season turned on in the launcher's Career tab.</p></section>`; return; }
+  document.getElementById("meta").textContent = R.contracts ? `Contracts: ${R.contracts.resigned} re-signed, ${R.contracts.signed} new, ${R.contracts.released} free agents` : "";
+  out.innerHTML = `
+  <section><h2>Moves</h2>${R.events?.length ? `<ul class="moves">${R.events.map(e => `<li>${esc(e)}</li>`).join("")}</ul>` : `<p class="empty">No changes.</p>`}</section>
+  <section id="teams"></section>
+  <section id="drivers"></section>`;
+  teams(); drivers();
+}
+function sortRows(rows, key, asc, get) { rows.sort((a, b) => { const x = get(a, key), y = get(b, key); const c = typeof x === "string" ? x.localeCompare(y) : (x ?? -1e9) - (y ?? -1e9); return asc ? c : -c; }); return rows; }
+function headers(el, cols, cur, asc, set) {
+  el.querySelectorAll("th[data-k]").forEach(th => {
+    th.classList.toggle("sorted", th.dataset.k === cur); th.classList.toggle("asc", th.dataset.k === cur && asc);
+    th.onclick = () => set(th.dataset.k);
+  });
+}
+function teams() {
+  const el = document.getElementById("teams");
+  if (!R.prestige?.length) { el.innerHTML = `<h2>Team prestige</h2><p class="empty">${R.options?.contracts === false || !R.options ? "Team prestige is only kept with “Team prestige and driver contracts” on in the launcher's Career tab." : "No teams."}</p>`; return; }
+  const rows = R.prestige.map(x => Array.isArray(x) ? { team: x[0], after: x[1], before: null } : x).map(x => ({ ...x, chg: x.before == null ? null : x.after - x.before }));
+  const first = rows.every(x => x.before == null);
+  sortRows(rows, view.tsort, view.tasc, (r, k) => r[k]);
+  const up = rows.filter(x => x.chg > 0).length, down = rows.filter(x => x.chg < 0).length;
+  el.innerHTML = `<h2>Team prestige</h2>
+    <p class="dim">${first ? "First off-season of this career: every team's starting prestige." : `${up} teams up, ${down} down. The thin line marks last year's prestige.`}</p>
+    <div class="scroll"><table><thead><tr><th class="l" data-k="team">Team</th><th data-k="before">Last year</th><th data-k="after">Now</th><th data-k="chg">Change</th><th class="l barcell"></th></tr></thead><tbody>
+    ${rows.map(x => `<tr><td class="l">${esc(x.team)}</td><td>${x.before ?? "–"}</td><td><b>${x.after}</b></td><td>${x.chg == null ? `<span class="d same">new</span>` : delta(x.chg)}</td>
+      <td class="l barcell"><div class="bar"><i style="width:${x.after}%"></i>${x.before != null ? `<b style="left:${x.before}%"></b>` : ""}</div></td></tr>`).join("")}
+    </tbody></table></div>`;
+  headers(el, null, view.tsort, view.tasc, k => { view.tasc = view.tsort === k ? !view.tasc : k === "team"; view.tsort = k; keep(); teams(); });
+}
+function drivers() {
+  const el = document.getElementById("drivers");
+  if (!R.progression?.length) { el.innerHTML = `<h2>Driver ratings</h2><p class="empty">${R.options?.progression === false || !R.options ? "Ratings only change with “Driver ratings change with age” on in the launcher's Career tab." : "No rated drivers."}</p>`; return; }
+  const all = R.progression.map(x => ({ ...x, chg: Math.round((x.after - x.before) * 10) / 10 }));
+  const better = all.filter(x => x.chg > 0).length, worse = all.filter(x => x.chg < 0).length;
+  el.innerHTML = `<h2>Driver ratings</h2>
+    <p class="dim">${better} drivers better, ${worse} worse, ${all.length - better - worse} the same. Overall = the mean of the five ratings. Track skills follow speed, control and defense.</p>
+    <div class="tools">
+      <select id="fs" aria-label="Series"><option value="all">All series</option><option value="Cup">Cup</option><option value="Busch">Busch</option><option value="Retired">Retired</option><option value="No ride">No ride</option></select>
+      <input id="fq" type="search" placeholder="Find driver or team">
+      <label><input id="fc" type="checkbox"> Only changed</label>
+    </div>
+    <div class="scroll"><table><thead><tr>
+      <th class="l" data-k="name">Driver</th><th class="l" data-k="series">Series</th><th data-k="car">#</th><th class="l" data-k="team">Team</th><th data-k="age">Age</th>
+      <th data-k="before">Overall was</th><th data-k="after">Now</th><th data-k="chg">Change</th>
+      ${RAT.map(([k, n]) => `<th data-k="${k}">${n}</th>`).join("")}
+    </tr></thead><tbody id="dt"></tbody></table></div>`;
+  const fs = el.querySelector("#fs"), fq = el.querySelector("#fq"), fc = el.querySelector("#fc");
+  fs.value = view.series; fq.value = view.q; fc.checked = view.changed;
+  fs.onchange = () => { view.series = fs.value; keep(); body(); };
+  fq.oninput = () => { view.q = fq.value; keep(); body(); };
+  fc.onchange = () => { view.changed = fc.checked; keep(); body(); };
+  const get = (r, k) => r.r?.[k] ? r.r[k][1] - r.r[k][0] : k === "car" ? (parseInt(r.car) || 0) : r[k];
+  function body() {
+    const q = view.q.trim().toLowerCase();
+    let rows = all.filter(x => (view.series === "all" || x.series === view.series) && (!view.changed || x.chg !== 0) && (!q || `${x.name} ${x.team}`.toLowerCase().includes(q)));
+    sortRows(rows, view.sort, view.asc, get);
+    el.querySelector("#dt").innerHTML = rows.length ? rows.map(x => `<tr><td class="l">${esc(x.name)}</td><td class="l">${esc(x.series)}</td><td>${esc(x.car)}</td><td class="l">${esc(x.team)}</td><td>${x.age}</td>
+      <td>${x.before.toFixed(1)}</td><td><b>${x.after.toFixed(1)}</b></td><td>${delta(x.chg, 1)}</td>
+      ${RAT.map(([k]) => { const v = x.r?.[k]; return v ? `<td title="${v[0]} → ${v[1]}">${v[1]} ${delta(v[1] - v[0])}</td>` : "<td>–</td>"; }).join("")}</tr>`).join("")
+      : `<tr><td class="l empty" colspan="13">No drivers match.</td></tr>`;
+    headers(el, null, view.sort, view.asc, k => { view.asc = view.sort === k ? !view.asc : ["name", "series", "team"].includes(k); view.sort = k; keep(); body(); });
+  }
+  body();
+}
+load();
+</script></body></html>

@@ -4510,3 +4510,349 @@ Blender; a pack is then made from them (or from anyone's own glTF files with the
 ## Release layout: start file on top, everything else in app/ (user request)
 - Packages: NT04-Recomp/{Launch.bat | Launch.command | launch.sh, README.txt, app/}; app/ holds the framework, runtime/node, tools/llvm. Start files cd into app and run app's node (Launch.bat: cd /d "%~dp0app" + "%~dp0app\runtime\node.exe" launcher.mjs). The launcher's own folder is app/, so Data, default.xbe/exe, recomp.wasm, save/, roster/, presets/ also live there. README explains where things are and that extracting a newer version over the folder keeps the player's files in app/.
 - Tested with stand-in archives: win zip top level = Launch.bat, README.txt, app (108 files in app/); Linux package started through launch.sh from another directory: launcher home = app/ (Data path app/Data), compiler looked up in app/tools/llvm.
+
+## Code organised into folders (user request)
+- Layout: launcher.mjs, make-release.mjs, Launch.bat, nt04.config.example.json at the top; src/main.mjs (game server); src/{launcher,game,xbox,cpu,render,net,tracks,setup}; tools/ (dev tools), tests/ (self-tests), python/ (upscaling), docs/ (these notes, research tables), local/ (screenshots, sound samples, nascar_db.json, db_queries.json: game-derived, git-ignored). Player / runtime items stay at the top: Data/, save/, roster/, presets/, textures/, models/, captures/, jit-cache/, default.xbe/.exe, recomp.json/.wasm(.gz), recomp-native-*, launcher-settings.json, tools/llvm (bundled compiler).
+- Done by _to_delete/reorg/reorg.py (mapping + rewrite of every "./x" specifier, new URL, join(dirname(import.meta.url) / own here, "x") to the new relative path; references to top-level items rewritten to point up) and reorg_fixups.py (launcher python sys.path -> python/; tracks-server join(here = project folder, "src", "tracks", "track-pack.mjs"); recomp.mjs ROOT = ../.. for default.exe, output, tools/llvm; uis-run default.exe fallback; xiso default output; tools/recomp-sample and recomp-scan hand-built paths; tests/nascar-db-selftest default ../local/db_queries.json; make-release.mjs file search resolves paths relative to each file, EXTRA by new path). 124 files, 231 paths rewritten; check.mjs: 255 references, all resolve (except the local query dump).
+- Tested in a copy, then in the main folder: launcher + all page scripts and API routes; game start through the launcher (11748 recompiled functions); bot race median 2.9 ms/frame, 0 over 16.7 ms; xiso list; xbe2pe identical default.exe; recomp --top 20 with the bundled LLVM 19 writes to the project folder; track-pack build; x86-simd and nascar-db self-tests pass, uis-vm self-test (first 15 screens) all checks ok; recomp-all regenerates recomp-all.json identically; recomp-scan finds 8940 functions; make-release collects the same 101 files.
+- Old flat files: _to_delete/old-layout (main folder), _to_delete/github-repo-flat-old (GitHub folder). The main folder is itself ready to be the repository: git would add exactly 128 files (.gitignore covers game, built code, player data, local/, _to_delete/, github-repo/).
+- GitHub folder (github-repo/nt04-recomp, remote boomhower34/NascarThunder2004Recomp, 1 commit "initial commit" in the flat layout) now holds the new layout; git status: 113 removed, 5 modified, src/ tools/ tests/ python/ new - to commit as one "organise into folders" commit. LICENSE copyright: boomhower34.
+
+## Leaderboard in practice / qualifying / happy hour (user: "acting like it's a race")
+- The session type is GINF.RTYP, kept in memory at [0x2BB110] (and GMOD at [0x2BB114]) by 0xB8C40 ("select GMOD, RTYP from GINF"). Values from the race-stage handler 0x9F360 (on stage 0x15: RTYP 0 and 2 handled alike, 1 its own path, 3 the race's results path) and 0xB8B00 (race start: GMOD 3 -> RTYP 3): 0 practice, 1 qualifying, 2 happy hour, 3 race. Race Now race read: RTYP 3, GMOD 0 (mem and GINF agree).
+- race-hud.mjs: RTYP 0-2 -> a timed board ({ timed: true, session }): best lap, last lap and timed laps per car, fastest first, gap / interval to the best laps; no points or standings. A lap's time = the previous sample's +0x54 + game time since - the new +0x54 (exact at any sampling interval); laps from leaving pit road (+0x54 = 9999 before the first line) are not timed. Fixed in passing: `null <= n` is true in JS (a first best lap was never set).
+- play-client.js: timed board = track + session name, "Lap times", position / number / name / best lap / +gap; last lap and laps in each row's tooltip; F6 has nothing to switch to.
+- Tested: simulated 43-car field (_to_delete/bench/hud-sim.mjs, sessions 0-3): all cars timed, best laps exactly the simulated ones, sorted, gaps right; session 3 = the race board unchanged (running order, points). In-game, forcing [0x2BB110] = 0 mid-race stops the green flag (the game reads it), so the in-game check is the user's practice session. Rendered board checked (board-practice.html).
+
+## Leaderboard in the Gatorade 125 duels (user: "saying I'm in 39th but there are only around 21 cars in one duel")
+- The board walked all 43 race-table slots; a duel has ~21 cars in the session. The session's car count is byte [0x28A553] (0x13680 returns it; the race code, e.g. 0x9F360, loops over that many slots); slots past it keep stale data and were ranked in with the duel's cars. Race Now race: [0x28A553] = 43.
+- race-hud.mjs: N = [0x28A553] (1..43): states, the active / caution / live-timing thresholds, the per-car loop and mapSlots use N (mapSlots' agreement threshold N - min(8, N/5); a duel's field list may hold the full field, then the slot's own car number decides).
+- Points and season standings only when the session (GINF.RTYP, [0x2BB110]) is 3, the race: the duels run under the Daytona 500's RACE row (ISPT 1), which would have shown race points / "standings if the race ended now" during a duel. The duel's own RTYP value is not confirmed (the race-stage handler has cases 4-7); anything but 0-2 (timed board) and 3 (points) shows the running order without points.
+- Tested: hud-sim.mjs with N = 21 and 22 stale slots: 21 rows, the player 6th of 21, no points / standings; N = 43 session 3: unchanged (43 rows, points, standings); practice with N = 21: 21 timed cars.
+
+## AI pit stops (user: "Is the AI pit stop really sped up? I keep losing too many positions")
+- Nothing in the port changes pit stops: no hook, config step or patch touches the pit code (grep of gamecode,
+  nt04-config, main). Pit timing runs on the game clock [0x28A5BC] (ms, paused with [0x28A5B4]), the same clock for
+  every car.
+- Player stop measured in the port (Talladega, Race Now, bot, _to_delete/bench/pit-probe.mjs): pit road entry ->
+  stall 16.5 s (55 mph limit), 16.6 s in the stall (menu estimate 15.65 s), stall -> track 4.9 s: ~38 s of pit road
+  in all, about 70 % of a Talladega lap.
+- AI under a caution (forced: 0x2BA9BC = 0, 0x2F3284 = 0, RequestStage(2, 0x21), 0xAAA40; pit-caution.mjs with a
+  60-lap race from a config, cautions at laps 1, 2, 4 and 5): no AI car went down pit road once. Their controller
+  states (setter 0x2C7D0(ctl, state), car index ctl+0xC) only went 2 -> 11 -> 10 -> 2. ctl+0x38 is the controller's
+  pit flag (read at 0x2BD88 / 0x2BDE8, set at 0x2B540..0x2B54F inside 0x2B4A0, which also writes race entry +0x28 =
+  clock + 30 s); setting it by hand during the caution was cleared again, no stop.
+- Fuel was never used in these races (fuel used [[rec+0x18]+0x2C] stayed exactly 0 with SGPP / CGPL / GINF.SPIT 0 or
+  1, any length), so the AI never has a reason to stop, while the player's stop always costs the full ~38 s.
+  The user's profile is DIFF 0, SPIT 0, SRLN 3 (unlimited fuel and tires, 3 % races).
+- Open: where the race takes its "fuel is used" switch from (GINF has SPIT too: "update 'FNIG' set ... 'TIPS'"),
+  and the AI's own stall time once they do stop (state 6 -> 5 on the AI controller).
+- Follow-up (user: career race, fuel and tires on, the AI pits too; in on 11th, ~40th after the cycle).
+  Fuel use switch: 0xABD5D -> 0x137C0 = [0x28A570] (0 in Race Now, so no fuel was used there) and 0xAE230
+  ([0x2BA7C8] caution laps == 0 also stops fuel use: the stock 3 % / 5 % rows had 0). Fuel added per step at 0xABDA4:
+  [0x28A59C] x st x [0x204624] into [[rec+0x18]+0x2C], capped at 1.0.
+- With [0x28A570] = 1 each frame (pit-probe.mjs, 60-lap Talladega, every tank set to 0.78-0.85 after the green), the
+  AI pits by itself. Green-flag stops, game clock:
+  | | in -> stall | in the stall | stall -> track | total |
+  | player | 16.4-16.6 s | 15.8-17.0 s | 4.9-6.0 s | 37-39 s |
+  | AI (10 stops) | 20.8-24.9 s | 15.5-17.6 s | 6-12.7 s | 44-51 s |
+  The AI's stall time matches the player's; its whole stop is longer, not shorter. AI car 13 went 3rd -> 34th on its
+  stop (a Talladega lap is ~54 s).
+- AI fuel use was ~0.0011 per s at speed against the player's ~0.0014 (bot flat out): the AI ran ~17 laps on a tank to
+  the player's ~13. AI cars pitted only once fuel used reached 1.0 (they keep full speed when empty).
+- Not settled: why the user ends ~40th after the cycle. Needs the track / length and whether the place came from the
+  game's HUD or the launcher leaderboard (race-hud mapSlots).
+
+### Replay screen slow after a race (~9 fps)
+- User video: the replay after a career race at 7-9 game fps, "emu max 108 ms".
+- Reproduced (scratch _to_delete/bench/replay-live.mjs: Race Now cut to one lap by config, the RemoteRenderer
+  recording with a page that acknowledges at once, frames paced like main.mjs): the results screen 3/8 ~15 ms a
+  frame, the replay 3/3 83 ms. With NT04_REPLAY60=0: 15 ms.
+- Profile: the time was in 0xEBDF0 calling D3DDevice_BlockUntilVerticalBlank over and over. Its frame end 0xEBE40
+  (when [0x226158] is set) loops `while (vblank count (0x127D50) - last frame's < 2) BlockUntilVerticalBlank()`.
+  oneWait returned from the Block without a vblank, so the count only moved with gamecode's fallback vblank after
+  12.2 M instructions: ~70 ms of spinning in every replay frame.
+- Fix (d3d-hle): with oneWait the Block still raises the vblank (the game's count moves on) but does not count as a
+  host wait, so the frame stays one 60 Hz period. The game sees the same 2-vblank frames as before (0x20614C 2).
+  After: the replay ~9-17 ms a frame.
+
+### Pit stops on the leaderboard
+- User: pit stop details by driver.
+- race-hud: per car, from the race table states: onto pit road (5 from anything but 5 / 6), the stall (6), pulling
+  away (6 -> 5), back out (2 / 3 / 10). Only after the start and before the car is done (the field drives down pit
+  road after the flag); racing -> 6 directly is a retirement, not a stop. Each stop: lap, pit road s (entry to exit),
+  stall s, place in / out (race table +0x5E is 0-based), caution. Board rows carry `stops` and `pitNow` (phase in /
+  stall / out, seconds so far).
+- play-client: a "Pit stops" tab (F6 cycles board -> pits -> points -> season): stops, the last stop (or the one under
+  way), every stop in the row's tooltip, the player's stops in full below.
+- Checked (pit-hud.mjs, fuel on, Talladega): 9 stops recorded, e.g. #18 Labonte lap 4, pit road 46.0 s, stall 15.9 s,
+  4th -> 35th; the player's lap 2 stop 37.3 s / 15.9 s; phases shown live while on pit road.
+
+### Roster: own pit box crew and tool cart picture
+- User: a 768 x 384 sheet (faces, yellow suits with red stripes, ears, gloves; the tool cart, tyre and tools) to use
+  for an added driver. It is the game's PITBOX layout at 3x: TK_PBNR entry 0, 256 x 128 P8 swizzled, 43 palettes
+  (header: image at 0x100, palette 0 data at 0x8400, 0x480 apart), the race fills palette k with the tint of the car
+  in 0x2DD200 entry k (checked: palette hues follow that table's colours, not the race slots).
+- Per car the image is shared, so a picture needs the renderer: gamecode notePitBox (when TK_PBNR opens: size, image
+  and palette offsets, the image's first 64 bytes) and pitBoxSheet(crid) (roster/textures/pitbox/<crid>.png,
+  roster driver pitBox "custom"; nt04-config rosterPitBoxes). gl-remote pitBoxTexture: a 0x0B texture of that size
+  whose memory has the MMAP header in front and the same first bytes is the sheet; palette (palData - pal0) / 0x480 =
+  k -> CRID -> that car's picture, sent once as RGBA ("rawtex", texs key pb:<crid>). An opaque picture takes the
+  sheet's alpha from the car's palette (cut-outs).
+- Launcher: Roster -> "Pit box crew and tool cart": tinted with my colours / my own picture (2 : 1, 256 x 128 up to
+  1536 x 768, stretched to 2 : 1 if needed), template download = the game's grey sheet at 3x (/api/roster/base?kind=pitBox).
+- Checked: Race Now with every car given the user's sheet (pitbox-rec.mjs records the stream, replayed in a headless
+  page): the carts along pit road are the yellow cart with its toolbox and the crews on the wall wear the yellow suits
+  with red stripes; 1,603 substitutions in 40 s. The pit stop close-up crew is still CHARTEX (Pit crew uniforms).
+
+### "Tires Worn" early in races / qualifying (user report) — investigated, not changed
+- HUD 0x70A80: tyre message state [0x2B7531 + player*0x1C] (-1 none, 0 ok, 1 "Tires Worn", 2 "Tires Very Worn", 3
+  "Tire Wear Critical"); per frame x = max over the 4 tyres of 1 - grip ([[rec+0x10] + 0x24 + k*0x60]); state 0 -> 1
+  at x >= 0.1, 1 -> 2 at 0.2, 2 -> 3 at 0.3475 (only upward). Session start 0x715xx sets the state from the tyres as
+  they are (so a fresh car starts at -1 -> 0, no message).
+- Wear: [[rec+0x18] + 0x18..0x24] per tyre, grip = 1 - wear; capped 0.5. Rates per track and race length from the
+  track table [0x2F2F60] (0x13280: [0x28A598] tyre, [0x28A59C] fuel, by [0x28A56E] length). Talladega: tyre 0.0067
+  (100 %), 0.040 (3 %), 0.044, 0.022, 0.0085; fuel 0.025, 0.000001 (3 %), 0.154, 0.143, 0.068. So at 3 % the game
+  wears tyres 6x faster than a full race (and uses next to no fuel). Fuel / tyre use is on with [0x28A570] (SPIT).
+- Measured (tire-probe.mjs, Race Now Talladega 3 %, use forced on, bot): wear 0.005 after 30 s, 0.08-0.19 after 50 s
+  (mostly while [tyre+0x20] is at 1.0, i.e. sliding): "Tires Worn" near the end of lap 1. Same with stock caution
+  laps ({"3":0}) and with the interpreter instead of recomp.wasm (no translation difference).
+- Car reset 0x1A1D0 (wear, fuel, damage zeroed, grip 1) runs when a car is sent to the garage (0x19C97 / 0x4E0AA /
+  0x4EA0B); pit service 0x1A060 replaces tyres by the pit flags. Carry-over from one session to the next not tested
+  (no harness for a career weekend's practice -> qualifying yet).
+- Follow-up (user: the message is on screen as soon as the race / qualifying starts). Reproduced the user's own
+  career in the harness (a copy of save/E via NT04_SAVE; Career -> Load -> Race Weekend -> chassis 2 / engine 1 /
+  body 2 -> Race; keys in _to_delete/bench/career-keys.txt, nav.mjs / wkprobe.mjs / wkprac.mjs): Lowe's, 5 %, fuel and
+  tyre use on (rates 0.020 / 0.083). At the start of the race, of qualifying, of qualifying after a practice with the
+  tyres worn to 0.3 (Quit Session) and after Return To Pit: wear 0, grip 1, tyre message state 0, no text. The game
+  resets the car (0x1A1D0) on leaving a session and on Return To Pit; a Race Now quit -> new race starts fresh too.
+- The only early messages seen: the bot hit the wall (lap 1, ~95 -> 67 mph) and the right-front wear jumped 0 -> 0.495 in
+  one frame (tyre damage, 0x4A7xx), which fires "Tires Worn" / "Very Worn" / "Critical" in the same second.
+- Per-race rate table [0x2F2F60] (stride 24, also 48 at +0x3244) has rows for RAID 0..79 only; rows 80+ are other data
+  (tyre ~1.0, fuel up to thousands). Added tracks (RAID 80+) are already mapped to their base race by cnstRaceId at
+  0x132B9 before the rates are read, so they get the base race's rates.
+- Found with logs/tyres.log (main.mjs tyreDiag, written in the user's live play): at the first frame of qualifying /
+  the race the player's message states were already 1,1 (fuel, tyres) while every tyre read grip 0.000 (the car's
+  tyre objects not set up yet on that frame of the session load); from the next frame grip was 1.000 but the states
+  only step up, so "Tires Worn" stayed on screen and later tyre warnings came late. Not seen in the headless harness
+  (its frames do not interleave with the load the same way).
+- Fix (main.mjs hudStartFix): for the first 300 frames of a session (race table + session type), a player whose car
+  is fresh (grip >= 0.999 and no wear on every tyre) with tyre state 1-3 gets it set to -1 (0xFF); likewise the fuel
+  state 1-4 when no fuel is used. The game's next check moves -1 -> 0 and writes " " to the line. Checked in the
+  harness with the states forced to 1,1 at the start of qualifying: -1 after that frame, 0 the next.
+
+### Leaderboard tabs from a controller
+- User: a controller button for the leaderboard tabs, R3 by default. play-client: boardButton (localStorage
+  "nt04.boardButton", default 11 = R3 of the standard layout, raw button number on a wheel, -1 none); polled with
+  the pads, a press on any controller cycles the tabs like F6 (raceBoard.nextTab). While the board is up with more
+  than one tab (raceBoard.cycling) the button is masked out of what goes to the game (addGamepad / addWheel), so R3
+  does not also act in the game then. Game page Controls panel: a list of positions + "press to set". Help F6 row.
+- Checked in headless Chromium with a fake race message and a fake pad: four R3 presses -> pit stops, race points,
+  season, running order; RTHUMB (bit 128) never sent to the game.
+
+### Catch fence pop-in: track model fade distances
+- User: the catch fence pops in. The visibility pass's LOD thresholds ([0x228E40] -> 0x228E30: 1600 / 2400 / 2800 /
+  3200, by the node's clip-space depth) do not cause it: scaling them x0.25 / x3 left the fence the same.
+- The TMdl "Fade" chunk (one u32 per instance: u16 start, u16 end distance in feet; 0 = always) does. Talladega
+  (TK_REND 49): 3,053 instances 0, 51 at 900 -> 1400 ft (the fence), 5 at 750 -> 1000, 6 at 80 -> 180, 1 at 150 -> 450.
+- gamecode withFadeScale (TK_REND.DAT opened): multiplies both distances of every non-zero entry by NT04_FADE_SCALE
+  (or config "fadeScale"; 1 = the game's), capped at 65535. Launcher Play tab: "Catch fence distance" 1x / 1.5x / 2x /
+  3x / 4x (settings.game.fadeScale -> NT04_FADE_SCALE). Checked (soft renderer, Race Now Talladega, same frame): x3
+  draws the fence farther along the outside wall, 3,355 -> 3,488 draws.
+
+## Vertical line in the sky at higher render scales (track map edge)
+
+A thin dark vertical line at x ~ 2/3 of the screen, y ~ 40..160, fixed on screen while the view turns (reported at
+Pocono; any track whose map texture has something in its right-hand column shows it). It is the track map: a
+160 x 120 screen-space quad at x 425.6..585.6, y 40.8..160.8 (DrawVertices, pass-through vertex program, texture
+128 x 128, stage on WRAP). At 640 x 480 no pixel centre lies inside the left edge closely enough for the bilinear
+filter to reach past u = 0; with the client's render scale at 2x or more the first column of samples (x 425.75) has
+u ~ 0.0008, and with wrap the filter blends in the texture's right-hand column. gl-remote.mjs now marks 2D programs
+(oPos copied from an input, no constants) and, for their small draws (< 16 vertices), turns a stage's WRAP into CLAMP
+when every vertex's texture coordinates are inside 0..1 (hudClamp). Draws with coordinates outside 0..1 keep wrap.
+Checked by a recorded Pocono stream replayed in the page at scale 2: line before, gone after; the map unchanged.
+
+## Repainting the game's own cars (Roster tab, "Paint schemes of the game's cars")
+
+roster.carPaints { "<CTID>": { crid, layout } } with roster/paint/stock_<CTID>.png (stock_<CTID>.src.png: the picture
+as given; a 1252-layout picture is rearranged with the scheme's own paint as the alpha/size template). No database
+change: gamecode withCarPaints replaces the archive entries themselves, CARDATA.DAT and CARRESFE.DAT entry CTID (the
+front end's copies use the same indices; CARRESFE has 360 entries, CARDATA 519) and, in CARDATA, the scheme's
+rookie-stripe copy 0x192 + RTOF (from the game's CRSK row with that CTID, CRID < 250). Each replaced entry is encoded
+in the format of the entry it replaces (512 paletted, or the 1024/2048 DXT5 one for big pictures), so saved seasons and
+careers (their own CRSK rows still point at the same CTIDs) show it too. The game's cars have up to 12 CRSK rows
+(CSTP 0 main per year CSKY, 1 alternates, 3 test car); CARS.CSTN picks the raced one. Two CTIDs are shared by two
+cars each (the page says so). Checked: #20 Home Depot (CRID 32, CTID 68) recoloured shows in a race at Pocono,
+with and without added drivers in the roster; the page's upload / layout / back-to-the-game's flow in a headless browser.
+
+## Taking out the game cars' paint schemes (Roster tab, "In the game" ticks)
+
+The game reads a car's schemes by index, never by a list: count(*) from CRSK where CRID = ?, then the row with
+CTXN = k (select CTID ... where CRID = ? and CTXN = ?), and CARS.CSTN is the raced row's CTXN (careers choose it by
+"select CTXN where CRID = ? and CSTP = ? and CSKY = ?" / max(CSKY), the main scheme of the season's year; a few updates
+write the row CTXN = 0). So nt04-config removeSchemes (roster.removedSchemes { CRID: [CTID] }, run at the end of
+applyRoster on every load, saves included) deletes the rows, renumbers the car's remaining rows 0.. in their old
+order and moves CSTN with its row (its row gone: the newest CSTP 0 row left, else the first). It does nothing when
+it would leave no main (CSTP 0) scheme; the server refuses that too. Rows a career's sponsor deal has re-pointed
+(another CTID) are left. Checked: CRID 32 with 68 / 238 / 295 out -> 8 rows CTXN 0..7, CSTN 4 -> 1 (CTID 69, main
+2002), race loads with it.
+
+## Adding paint schemes to the game's cars
+
+roster.carSchemes { CRID: [{ name, layout }] }, pictures roster/paint/carx_<CRID>_<k>.png. rosterPaints lists them
+after the added drivers' paints (game: true, template = the car itself), so they get CARDATA / CARRESFE entries
+PAINT_BASE + slot like a driver's extra scheme. removeSchemes (now taking out and adding) rebuilds the car's rows on
+every load: the added rows from before (CTID 0x400..0x5FF, never a game row's) go, the taken-out ones go, the rest
+are renumbered, then one row per added scheme follows (a copy of the raced / main row: colours, number art, pit sign,
+crew; CSTP 1, RTOF -1, the given name), CSTN following its row (an added one found again by its entry). Slots move
+when drivers are added or removed, so rebuilding each load keeps saves pointing at the right entries. The paint
+template for an added scheme (withRosterPaints make) now skips rows whose CTID is past the archive (an added row can
+be the raced one). Checked: CRID 2 (#99) gets row CTXN 8 = CTID 1024 "Blue Test"; entry 1024 decodes to the picture.
+Race Now resets CSTN from the car select (the harness could not force an AI car onto it), so the in-race look was
+checked through the entry only; the path is the one added drivers' extra schemes already use in races.
+
+## Editing the game's own drivers (Roster tab, "The game's drivers" -> Edit)
+
+The added-driver editor in "game mode" (roster-ui editGame: the car itself is the hidden start car, no paint panel),
+saved to roster.gameDrivers by POST /api/roster/gamedriver (roster-server cleanGame) and applied in place by
+nt04-config applyGameDrivers (end of applyRoster, every load): same DRID / CRID, so DRST / CWIN history, DSID speech
+and career records stay his. Every load: DRVR FNAM LNAM CITY STAT BYER BMON BDAT RKYR, POID (only with his own
+portrait: a free entry from 100, roster/textures/uis_drpo|drps/<poid>.png, past the bundle's end like added
+drivers'), CARS CNUM / CNMD / NSID / SSID (another game car's with that number, else NSID = number, SSID 999; back to
+the game's values from orig when the number is set back), CRSK CNID (his own picture / another car's / the made one
+at numberArt 300.. / each row's own), PBNR (made or own sign: TK_PBNR BANNER_BASE + slot, rosterBanners now lists
+gameDrivers after the added drivers), PTEX (CREW_BASE + slot) and the colours (only when changed from the car's;
+rows a sponsor deal dressed keep crew and colours). Fresh loads only: ratings, DSKL, CTYP (3 / 4: CCRC 1; 4 makes
+DSTT -1, leaving 4 makes it 0). The team goes through roster.carTeams. Checked: #20 edited to "Anthony", #77, speed
+99, made sign, plain crew in blue -> DRVR / CARS / CRSK rows as expected at boot, race at Pocono loads; the page's
+edit / save (portrait, close-up made from it, number picture 300, sign) / back-to-the-game's in a headless browser.
+
+## Scheme locks follow the renumbered schemes (fix: added schemes showing "Locked" in car select)
+
+Report: Rusty Wallace (CRID 34) with test car / main 2002 / Elvis / Harley taken out and two schemes added; the car
+select's scheme scroller showed "Locked 1" and the black locked car for one of them. The locked alternates are CARD
+rows of type 3: CPRM = CRID, UORD = CTXN (all 74 match a real (CRID, CTXN); Rusty's are UORD 2, 3, 4 = main 2002,
+Elvis, Harley), read by the menu at 0x774DE ("select DROU from CARD where CPRM = ? and CRDT = ? and CLVL >= 0 order by
+DROU"), unlocked per profile by card number (DCLU). After the renumbering the added schemes were CTXN 1 and 2, so
+UORD 2 locked "Victory Lap". removeSchemes now maps the cards (and SCAR, the scenario cars' CRID / CTXN) from the
+game's index of each scheme (stockCtxn, captured on the fresh load; the game's UORD / CLVL / CTXN kept on the rows
+as non-enumerable _u0 / _l0 / _x0) to its index now; a taken-out scheme's card gets CLVL -1 (out of the menu and the
+Thunder Plates). Checked with the user's roster.json: rows 0 Team Rusty / 1 Penske 50 Wins / 2 Victory Lap, cards
+2/3/4 CLVL -1, the same after a second (save) application.
+
+## Car select scheme scroller, second fix: lock look-up without CLVL, and the front end's paints at 512
+
+Reproduced in the harness (_to_delete/bench/carsel.mjs: Race Now -> driver select, up to Rusty, RIGHT through his
+schemes, logging the CARRESFE entries loaded and snapping the UI): with the taken-out cards at CLVL -1 the third
+scheme still read "Locked 0". The scroller finds a scheme's card by "select CRDN, CLVL from CARD where CRDT = ? and
+CPRM = ? and UORD = ?" (0x1DE0A8, at 0x1695F) with no CLVL test, so a card left at UORD 2 still locked index 2. A
+taken-out scheme's card now gets UORD 255 as well (as the game's unused cards: UORD 255, CLVL -1); after that the
+three schemes scroll Penske 50 Wins / Victory Lap / Team Rusty Dodge with no lock, loading CARRESFE 1025 / 1026 / 4.
+The scroller label "Locked N" is 0x774C0 (N = the scheme's place among the car's locked UORDs).
+Also: the front end's copies (CARRESFE) of roster paints were made high-resolution like the race's: a 1252 picture
+gave 4.2 MB per preview load (the game's are 263,708 bytes), into the preview's async loads; the reported preview
+stopping after some scheme changes points at that. gamecode paintCap(fe): CARRESFE entries (roster, game-car,
+added-scheme and sponsor paints) are always 512 paletted, CARDATA keeps the 1024 / 2048 DXT5 ones. (The headless
+harness has no preview car drawn, so the stall itself was not reproduced; the loads now match the game's size.)
+
+## Driver select preview car missing after the attract demo (alpha test left on)
+
+Reproduced: _to_delete/bench/demo2.mjs (idle at the main menu until the demo 3/5 runs, START out, Race Now -> driver
+select, record the RemoteRenderer stream) replayed in the page: no car after the demo, the car without it. The two
+streams differ only in the pixel state: after the demo alpha testing is on (NV2A 0x300 = 1, func 0x204 GREATER, ref 0,
+plus the race's blend / depth states and fog colour). The preview car's pixel shader gives alpha = tex0.a * v0.a and
+its vertex program writes oD0.w from c-86.w (C[10]), which is 0, so every fragment was discarded. The race turns
+alpha testing on once through the game's render state cache 0x131B60(state, value) (cache at 0x2732D8, filled from
+D3D__RenderState 0x19CD70 by 0x1318A0; state 60 = ALPHATESTENABLE, table 0x1D2FF0 -> method 0x40300) and never off;
+the front end never sets it (at driver select it only sets 0x304 / 0x344 / 0x348 each frame). Fix: the hook on
+0x13AEB0 (a UI context's screens closed, the race's when it ends) also calls 0x131B60(60, 0), so the cache and the
+device agree on "off" again; the next race turns it back on. Checked: after the demo the preview shows #20 again
+(stream replay); a race at Pocono still draws its alpha-tested parts.
+
+## Roster paints cached (car select paused on one's own schemes)
+
+The car select loaded Rusty's own schemes ~0.3 s slower than the game's (harness carsel.mjs: RIGHT to an added
+scheme 340-360 ms, to a game scheme ~55 ms): each roster paint was decoded from its PNG and quantised to the front
+end's 512 paletted format (~0.11 s decode + ~0.11 s encode for a 2048 picture) the first time an opened archive was
+asked for it, and the front end opens CARRESFE again for its screens; a race's 2048 DXT5 sheet takes ~0.8 s. gamecode
+paintFromFile now keeps each made paint in memory for the run (up to 256 MB, least recently used out) and on disk in
+roster/paint/.cache/<picture>.<key>.<fe|race>.bin (key: path, time and size of the picture, the size cap, the template's
+bytes; an older copy of the same picture and kind is removed when a new one is written). Second run: the added schemes
+load in 60-90 ms, like the game's. Used by the added drivers' paints, the game cars' replaced and added schemes.
+
+## Career save listed as "Damaged Save" after roster changes
+
+Reproduced with a copy of the user's save (_to_delete/bench/usersave; Main menu -> Race Modes -> Career -> Load ->
+hard disk). The load list checks each save (0xE6500 -> 0x105630): the name's signature (fine: HMAC-SHA1 with the
+zero stand-in key gives the stored 1BA8D545... for "Career1") and the size: the save's 16 KB blocks against
+ceil((0x105550 = 0x5E950 career tables as they are now + 0xC000) / 16 KB). At boot the tables make 272,424 bytes
+(17 blocks, the save's 278,528 is 17); once Career -> Load is chosen the career tables are set up with the roster
+(edited drivers, added / taken-out schemes, grown capacities) and make 293,404 = 18 blocks, so the list marked it
+damaged, though the load itself reads saves as written (hook 0xE5D70) and checks the image signature. Hook 0x105550
+(called only by that check): when the listed save is within 16 blocks of the tables' size it answers the save's own
+size (entry ebp, [[ebp+0x14]+0x10]). Checked: the list shows "Career 1-Career1, 18 blocks", A -> "Load successful.".
+NT04_STRICT_SAVE_SIZE=1 keeps the game's check. (NT04_TRACE_SAVESIZE's check hook calls 0x105630 through nested(),
+which skips this hook: use it only with NT04_STRICT_SAVE_SIZE.) The user's save itself was not changed (copy in
+_to_delete/savebak).
+- Follow-up (user: remove the check): 0x105550 now always answers the listed save's own size, so the list never marks
+  a save damaged for its size; the read before a load allows 4 MB past the expected image (was 256 KB). Checked: the
+  user's save lists and loads; a copy cut to 150,000 bytes lists normally and Load says "Unable to load Career from
+  hard disk." (the load's own checks), nothing worse. The name-signature part of the list check stays.
+
+## Frame drops at Watkins Glen (user video): diagnosis so far, hitch log
+
+The video (232 s, 30 fps capture) has 14 stills of 3-9 capture frames (100-300 ms), at different places on the track
+and often at an event: the Rival popup, the pit menu, the finish, a wreck. The page's status line around them:
+game 60 fps (= real time), emu max 14-21 ms, page 3-8 ms per frame, but "sent 51 skipped 10 | ack 47/261 ms" and
+"sent 49 skipped 12 | ack 45/279 ms": the server ran on time and the page drew each frame quickly, but frames were
+acknowledged up to ~0.27 s late, so the server had no credits and skipped frames. Those seconds also carry 50-57 MB/s
+of stream against ~23 MB/s elsewhere (2,400-3,400 draws per frame at the Glen; a harness recording there: median
+571 KB per frame, of it 458 KB draw words, 126 KB buffers (140 small vertex blocks a frame), 7 KB JSON). The gap is
+outside the page's frame work (garbage collection, the browser's compositor or GPU, the socket): not measurable
+from the status line. Added: the page reports any animation-frame gap over 100 ms (play-client hitchCheck: what it got
+and did in the 1.5 s before — 3D / UI / sound messages and bytes, frame and UI work in ms, UI texture uploads, programs
+linked, browser long tasks, script heap before / after) and the server writes it to logs/hitches.log with its own
+longest steps and loop gaps of the last 2 s and frames sent / skipped.
+
+## Choppy picture at a steady 60 fps (Windows timer tick)
+
+User video: status line steady (60 fps, nothing skipped, ack 8 ms, "empty 105": a 165 Hz screen), but 27 % of the
+30 fps capture's frames repeat the previous one. main.mjs paced its frames with setTimeout(loop, next - now - 1); on
+Windows a timer wait runs to the 15.625 ms system tick (Node does not ask for a finer one), so the wait for a frame
+16.7 ms away came back at 15.6 or 31.3 ms and the frame after a late one went out at once: frames in pairs with 31 ms
+gaps. Reproduced on Linux by rounding setTimeout up to 15.625 ms ticks (--import a wrapper) and timing the frames a
+WebSocket client receives over 30 s: intervals p50 15.7 / p99 31.9 ms, 119 gaps over 25 ms, "late" 31 a second.
+Fix: the loop measures how late its timers come back (median of the last 30); over 3 ms, it waits with the timer
+only to within 17 ms of the frame and yields with setImmediate for the rest (some processor time, frames exact).
+Same test: p50 16.7 / p99 18.7 ms, no gaps over 25 ms, late 0. With normal timers (Linux): unchanged, p50 16.7.
+NT04_TIMER=coarse / fine forces a mode; the status line shows "late N" (frames started over 8 ms after due) and
+"(coarse timer)" when the yielding wait is on.
+
+## Career new-season freeze after "change settings? Yes" (live DB cursors)
+
+- Symptom: Career → New Season → silly season report → "change settings?" → Yes hangs forever.
+- Cause: the loop in 0x95E50 opens a cursor on `select DRVR.DRID from DRVR join DRST where DSTT = 3`, then for each row it fetches the row, updates DSTT = 0 (so the row drops out of the set) and decrements the cursor position (`decw [cursor+4]`). The original engine re-evaluates the cursor on fetch, so the next fetch returns the next row that still matches. Our engine took a snapshot when the cursor was created, so after the decrement it fetched the same row again, forever.
+- Trigger in the user's save: driver DRID 128 (DSTT 3, RETY 0) has 2 DRST rows, so the join returned 2 rows and the loop never ended.
+- Fix (src/game/nascar-db.mjs): cursors are now live. The DB keeps a `writes` counter that goes up on any update/delete/insert/insertSelect/invalidate that changes data. On fetch, if the counter has changed since the cursor was made, the cursor's select is run again with its saved params.
+- Checked: on a copy of the save, Yes now reaches the Career Settings screen and then the career main menu (Year 2005, Race 1/12). The DB selftest passes, and a Pocono quick race still runs.
+
+## Silly season report page (user: "show the change in prestige for teams and change in driver ratings")
+- /silly-season on the game's page is now an HTML page (src/render/silly-season.html); /silly-season.json the data,
+  /silly-season.txt the old plain text. User picked the browser page over the in-game screen (4/4 only has the
+  car / driver / status / replacement list).
+- Data: contractOffSeason keeps last year's SSTP (pres0) -> res.prestige [{ tmid, team, before (null = first
+  off-season), after }]. progressRatings now lists every driver with a ride, changed or not, with r: { DSPD.. :
+  [before, after] }. The hook adds each driver's ride after the off-season (rideInfo: Cup / Busch / Retired / No ride,
+  car number, team) and saves the report to <save>/silly-season.json (newest first, last 40), so past off-seasons stay
+  after a restart. Fixed: the report object had left progression out, so the text report never showed ratings.
+- Page: off-season picker; moves; prestige table (last year, now, change, bar with last year's mark, sortable);
+  ratings table (overall was / now / change and each of the five ratings with its change; series filter, search,
+  only changed, sortable). Notes when contracts or progression are off.
+- Checked: 2 simulated off-seasons (scratch _to_delete/bench/ssreport.mjs) -> 27 teams with before / after, 55 drivers;
+  page rendered at 1100 px light and 400 px dark with no errors or sideways scroll.
+- Buttons (user: "add a button to take the user to the silly-season page"): launcher Play tab (beside Start / Stop)
+  and Career tab (beside Save) open "Silly season report"; the launcher serves the same page itself (/silly-season,
+  /silly-season.json from the active preset's save folder: default <Data>/../save, else presets/<id>/save), so it
+  opens with the game stopped. Game page: a link in the bar under the game. a.btn styled like button.btn. Help topic
+  "Career: the silly season" mentions it. Checked: launcher on a test Data folder served the saved report; both buttons
+  render and open the page (84 rows).

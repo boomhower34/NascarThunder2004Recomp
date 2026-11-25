@@ -39,23 +39,47 @@ The launcher's **Help** tab covers everything else: controls, graphics options, 
 
 ## How it works
 
-The game's x86 code is translated to C and compiled to WebAssembly (`recomp.mjs`, using clang). It runs on a
+The game's x86 code is translated to C and compiled to WebAssembly (`src/cpu/recomp.mjs`, using clang). It runs on a
 re-implementation of the parts of the Xbox the game needs:
 
 | Area | Files |
 |---|---|
-| Kernel, threads, file system | `gamecode.mjs`, `xbox-threads.mjs`, `xbox-fs.mjs` |
-| Graphics: Direct3D to WebGL | `d3d-hle.mjs`, `nv2a-vsh.mjs`, `gl-remote.mjs` |
-| Sound: DirectSound to Web Audio | `dsound-hle.mjs`, `audio-mix.mjs` |
-| Input | `xinput-hle.mjs` |
-| The game's menu engine | `uis-vm.mjs`, `uis-render.mjs` |
-| CPU fallback when nothing is recompiled | interpreter `x86emu.mjs`, translators `x86-jit.mjs` and `wasm-jit.mjs` |
+| Kernel, threads, file system | `src/game/gamecode.mjs`, `src/xbox/xbox-threads.mjs`, `src/xbox/xbox-fs.mjs` |
+| Graphics: Direct3D to WebGL | `src/xbox/d3d-hle.mjs`, `src/xbox/nv2a-vsh.mjs`, `src/render/gl-remote.mjs` |
+| Sound: DirectSound to Web Audio | `src/xbox/dsound-hle.mjs`, `src/xbox/audio-mix.mjs` |
+| Input | `src/xbox/xinput-hle.mjs` |
+| The game's menu engine | `src/game/uis-vm.mjs`, `src/game/uis-render.mjs` |
+| CPU fallback when nothing is recompiled | interpreter `src/cpu/x86emu.mjs`, translators `src/cpu/x86-jit.mjs` and `src/cpu/wasm-jit.mjs` |
 
 Setup from a disc image:
 
-- `xiso.mjs` reads the XDVDFS image.
-- `xbe2pe.mjs` turns `default.xbe` into the PE image the code runs from.
-- `recomp.mjs` builds `recomp.wasm` for that exact executable.
+- `src/setup/xiso.mjs` reads the XDVDFS image.
+- `src/setup/xbe2pe.mjs` turns `default.xbe` into the PE image the code runs from.
+- `src/cpu/recomp.mjs` builds `recomp.wasm` for that exact executable.
+
+### Project layout
+
+```
+launcher.mjs          the launcher (entry point; Launch.bat starts it)
+make-release.mjs      builds the download packages
+src/
+  main.mjs            the game server the launcher starts
+  launcher/           the launcher's servers and page scripts (roster, tracks, schedules, career, sponsors, help)
+  game/               game logic around the game's code: menu engine, config, career, HUD, paints, database, archives
+  xbox/               the Xbox side: file system, threads, input, Direct3D, DirectSound
+  cpu/                interpreter, translators, the recompiler and its function lists
+  render/             WebGL streaming, software renderer, the browser client
+  net/                online races, relay server, UPnP, WebSocket
+  tracks/             track packs, glTF, NASCAR Racing 2003 conversion, track physics
+  setup/              disc image extractor, XBE converter
+tools/                development tools (recompile analysis, archive extractor, screen audit)
+tests/                self-tests
+python/               picture upscaling scripts
+docs/                 reverse-engineering notes (analysis_notes.md) and research tables
+```
+
+The game files, saves, presets, roster and built game code go in the project folder next to `launcher.mjs`
+(`Data/`, `save/`, `presets/`, `roster/`, `recomp.wasm`). `.gitignore` keeps them out of the repository.
 
 `docs/analysis_notes.md` is the running record of the reverse engineering: memory layouts, functions, the database,
 the bugs found along the way. `docs/research/` holds analysis tables (stages, components, UI natives).
@@ -66,13 +90,16 @@ You need [Node.js](https://nodejs.org) 22 or newer, and for building the game co
 target and `wasm-ld` (any LLVM 18 or newer). There are no npm packages.
 
 ```sh
-node xiso.mjs extract "path/to/NASCAR Thunder 2004.iso" .   # Data/, default.xbe and default.exe here
-node recomp.mjs --calls 369 --executed --all                 # recomp.wasm + recomp.json for this default.exe
-node launcher.mjs                                            # the launcher, at http://localhost:8800
+node src/setup/xiso.mjs extract "path/to/NASCAR Thunder 2004.iso" .   # Data/, default.xbe and default.exe here
+node src/cpu/recomp.mjs --calls 369 --executed --all                 # recomp.wasm + recomp.json for this default.exe
+node launcher.mjs                                                    # the launcher, at http://localhost:8800
 ```
 
-Optional: Python 3 with numpy and pillow for picture upscaling (`upscale_textures.py`; AI models also need PyTorch
-and spandrel).
+Optional: Python 3 with numpy and pillow for picture upscaling (`python/upscale_textures.py`; AI models also need
+PyTorch and spandrel).
+
+Self-tests: `node tests/x86-simd-selftest.mjs`, `node tests/uis-vm-selftest.mjs Data` (a few minutes), and
+`node tests/nascar-db-selftest.mjs Data [queries.json]`.
 
 ### Release packages
 
@@ -92,8 +119,9 @@ with everything else in `app/`.
 
 ### Data files in this repository
 
-The recompile's function lists (`recomp-*.json`), `x86_callee_pops.json`, `kernel_imports.csv` and `xbe_symbols.json`
-are tables of addresses and names found by analysing the executable. They contain no code or data from the game.
+The recompile's function lists (`src/cpu/recomp-*.json`), `src/cpu/x86_callee_pops.json`,
+`src/xbox/kernel_imports.csv` and `src/xbox/xbe_symbols.json` are tables of addresses and names found by analysing the
+executable. They contain no code or data from the game.
 
 ## Credits
 
@@ -102,7 +130,7 @@ are tables of addresses and names found by analysing the executable. They contai
   clang and wasm-ld, bundled in release packages.
 - [XbSymbolDatabase](https://github.com/Cxbx-Reloaded/XbSymbolDatabase) (MIT): used to identify the XDK library
   functions (`xbe_symbols.json`).
-- [nxdk](https://github.com/XboxDev/nxdk) (CC0-1.0): the Xbox kernel export names (`xbe2pe.mjs`).
+- [nxdk](https://github.com/XboxDev/nxdk) (CC0-1.0): the Xbox kernel export names (`src/setup/xbe2pe.mjs`).
 
 ## Licence
 

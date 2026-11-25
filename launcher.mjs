@@ -27,12 +27,12 @@ import os from "node:os";
 import { existsSync, readFileSync, writeFileSync, readdirSync, statSync, rmSync, mkdirSync, cpSync } from "node:fs";
 import { join, dirname, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createRoster } from "./roster-server.mjs";
-import { createTracks } from "./tracks-server.mjs";
-import { createSchedules } from "./schedules-server.mjs";
-import { createCareer } from "./career-server.mjs";
-import { createSponsors } from "./sponsors-server.mjs";
-import { findClang } from "./recomp.mjs";
+import { createRoster } from "./src/launcher/roster-server.mjs";
+import { createTracks } from "./src/launcher/tracks-server.mjs";
+import { createSchedules } from "./src/launcher/schedules-server.mjs";
+import { createCareer } from "./src/launcher/career-server.mjs";
+import { createSponsors } from "./src/launcher/sponsors-server.mjs";
+import { findClang } from "./src/cpu/recomp.mjs";
 import { createHash } from "node:crypto";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -66,7 +66,7 @@ const srv = () => { const id = active(); if (!servers.has(id)) { const user = pr
 
 // ---------------------------------------------------------------- settings
 const DEFAULTS = {
-  game: { port: 8854, boot: "flow", net: "off", netName: "", netAddress: "", netPort: 27104, netRelay: "", unlockAll: false },
+  game: { port: 8854, boot: "flow", net: "off", netName: "", netAddress: "", netPort: 27104, netRelay: "", unlockAll: false, fadeScale: 1 },
   upscale: { bundles: ["uis_drpo", "uis_drps"], model: "", pre: "", scale: 2, soften: 0, overwrite: false, tile: 512, fp16: false, device: "" },
   export: { bundles: ["uis_drpo"] },
   preset: { active: "default", defaultName: "Main" },
@@ -136,8 +136,8 @@ function startGame() {
   const log = newLog(), port = settings.game.port | 0, boot = settings.game.boot;
   const s = settings.game, netArgs = s.net === "host" ? ["--net-host"] : s.net === "join" && s.netAddress ? ["--net-join", s.netAddress] : [];
   if (netArgs.length) netArgs.push("--net-port", String(s.netPort | 0 || 27104), ...(s.netName ? ["--net-name", s.netName] : []), ...(s.netRelay ? ["--net-relay", s.netRelay] : []));
-  const p = spawn(process.execPath, [join(here, "main.mjs"), DATA, "--port", String(port), "--boot", boot, ...netArgs], { cwd: here, windowsHide: true,
-    env: { ...process.env, ...(presetMeta(active())?.unlockAll ? { NT04_UNLOCK_ALL: "1" } : {}), ...(active() !== "default" ? { NT04_USER: presetDir(active()) } : {}) } });   // (gamecode unlockAllHook; presets)
+  const p = spawn(process.execPath, [join(here, "src/main.mjs"), DATA, "--port", String(port), "--boot", boot, ...netArgs], { cwd: here, windowsHide: true,
+    env: { ...process.env, ...(presetMeta(active())?.unlockAll ? { NT04_UNLOCK_ALL: "1" } : {}), ...(+s.fadeScale > 0 && +s.fadeScale !== 1 ? { NT04_FADE_SCALE: String(s.fadeScale) } : {}), ...(active() !== "default" ? { NT04_USER: presetDir(active()) } : {}) } });   // (gamecode unlockAllHook; presets)
   game = { running: true, port, log, proc: p, ready: false, code: null };
   const g = game, onData = d => { const s = d.toString(); g.log.push(s); if (/Open http:\/\/localhost/.test(s)) g.ready = true; };
   p.stdout.on("data", onData); p.stderr.on("data", onData);
@@ -169,7 +169,7 @@ function models() { try { return readdirSync(MODELS).filter(f => /\.(pth|safeten
 const BUNDLE_RE = /^uis_[a-z0-9]+$/;
 function upscaleArgs(o) {
   const b = (o.bundles ?? []).filter(x => x === "ui" || BUNDLE_RE.test(x)); if (!b.length) throw new Error("choose at least one picture set");
-  const m = models(), a = [join(here, "upscale_textures.py"), "--data", DATA, "--out", TEXTURES, "--bundles", ...b];
+  const m = models(), a = [join(here, "python/upscale_textures.py"), "--data", DATA, "--out", TEXTURES, "--bundles", ...b];
   if (o.model) { if (!m.includes(o.model)) throw new Error(`model ${o.model} is not in the models folder`); a.push("--model", o.model); }
   if (o.pre) { if (!m.includes(o.pre)) throw new Error(`model ${o.pre} is not in the models folder`); a.push("--pre", o.pre); }
   const scale = Number(o.scale); if (!(scale >= 1 && scale <= 8)) throw new Error("scale must be 1-8"); a.push("--scale", String(scale));
@@ -229,6 +229,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === "POST" && p === "/api/game/start") { const b = await body(req);
       if (b.port) { const n = Number(b.port); if (!(n >= 1024 && n < 65536)) throw new Error("port must be 1024-65535"); settings.game.port = n; }
       if (["flow", "menu", "title"].includes(b.boot)) settings.game.boot = b.boot;
+      if ([1, 1.5, 2, 3, 4].includes(+b.fadeScale)) settings.game.fadeScale = +b.fadeScale;   // (track detail fade distances: gamecode withFadeScale)
       if (typeof b.unlockAll === "boolean") writeMeta(active(), { ...presetMeta(active()), unlockAll: b.unlockAll });   // (each preset its own)
       if (["off", "host", "join"].includes(b.net)) settings.game.net = b.net;
       if (typeof b.netName === "string") settings.game.netName = b.netName.trim().slice(0, 24);
@@ -261,7 +262,7 @@ const server = http.createServer(async (req, res) => {
       const list = (b.bundles ?? []).filter(x => BUNDLE_RE.test(x)); if (!list.length) throw new Error("choose at least one picture set");
       settings.export = { bundles: list }; saveSettings(); mkdirSync(EXPORTS, { recursive: true });
       // one Python run for all of them: a tiny driver around read_textures.main
-      const code = `import sys; sys.path.insert(0, ${JSON.stringify(here)}); import read_textures as r
+      const code = `import sys; sys.path.insert(0, ${JSON.stringify(join(here, "python"))}); import read_textures as r
 bl = ${JSON.stringify(list)}
 for k, b in enumerate(bl):
     print(f"[{k + 1}/{len(bl)}] {b}", flush=True)
@@ -277,14 +278,14 @@ for k, b in enumerate(bl):
       if (b.check) { recompCache = null; findClang({ fresh: true }); return json(res, 200, recompStatus()); }
       const r = recompStatus(); if (!r.exe) throw new Error("default.exe is missing: set up the game files first (Setup -> Game files)");
       if (!r.compiler.ok) throw new Error(r.compiler.why);
-      const j = runJob("recomp", process.execPath, [join(here, "recomp.mjs"), "--calls", "369", "--executed", "--all"], 0);
+      const j = runJob("recomp", process.execPath, [join(here, "src/cpu/recomp.mjs"), "--calls", "369", "--executed", "--all"], 0);
       j.proc.on("close", () => { recompCache = null; }); return json(res, 200, { id: j.id }); }
     if (req.method === "POST" && p === "/api/iso") {   // the game's files from the user's disc image (xiso.mjs)
       if (game?.running) throw new Error("stop the game first"); const b = await body(req);
       const iso = String(b.path ?? "").trim().replace(/^["']|["']$/g, ""); if (!iso) throw new Error("enter the path of the disc image");
       if (!existsSync(iso) || !statSync(iso).isFile()) throw new Error(`there is no file at ${iso}`);
       if (basename(DATA).toLowerCase() !== "data") throw new Error(`the launcher's game folder (${DATA}) is not named Data: extract with xiso.mjs by hand`);
-      const j = runJob("extract", process.execPath, [join(here, "xiso.mjs"), "extract", iso, dirname(DATA), ...(b.force ? ["--force"] : [])], 100);
+      const j = runJob("extract", process.execPath, [join(here, "src/setup/xiso.mjs"), "extract", iso, dirname(DATA), ...(b.force ? ["--force"] : [])], 100);
       return json(res, 200, { id: j.id }); }
     if (req.method === "POST" && p === "/api/cancel") { if (job?.running) job.proc.kill(); return json(res, 200, { ok: true }); }
     if (req.method === "POST" && p === "/api/clear") { const b = await body(req);
@@ -293,14 +294,20 @@ for k, b in enumerate(bl):
       if (existsSync(d)) for (const f of readdirSync(d)) if (f.toLowerCase().endsWith(".png")) { rmSync(join(d, f)); n++; }
       return json(res, 200, { removed: n }); }
     if (req.method === "POST" && p === "/api/recheck") { findPython(); return json(res, 200, { ok: true }); }
-    if (req.method === "GET" && p === "/roster.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "roster-ui.js"))); }
-    if (req.method === "GET" && p === "/schedules.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "schedules-ui.js"))); }
-    if (req.method === "GET" && p === "/brands.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "brands-ui.js"))); }
-    if (req.method === "GET" && p === "/sponsors.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "sponsors-ui.js"))); }
-    if (req.method === "GET" && p === "/rookies.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "rookies-ui.js"))); }
-    if (req.method === "GET" && p === "/career.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "career-ui.js"))); }
-    if (req.method === "GET" && p === "/help.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "help-ui.js"))); }
-    if (req.method === "GET" && p === "/tracks.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "tracks-ui.js"))); }
+    if (req.method === "GET" && p === "/roster.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/roster-ui.js"))); }
+    if (req.method === "GET" && p === "/schedules.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/schedules-ui.js"))); }
+    if (req.method === "GET" && p === "/brands.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/brands-ui.js"))); }
+    if (req.method === "GET" && p === "/sponsors.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/sponsors-ui.js"))); }
+    if (req.method === "GET" && p === "/rookies.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/rookies-ui.js"))); }
+    if (req.method === "GET" && p === "/career.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/career-ui.js"))); }
+    // the silly season report page (the same page as the game's /silly-season), from the active preset's save folder,
+    // so it opens without the game running (<save>/silly-season.json, written after each career off-season)
+    if (req.method === "GET" && p === "/silly-season") { res.writeHead(200, { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/render/silly-season.html"))); }
+    if (req.method === "GET" && p === "/silly-season.json") { const dir = active() === "default" ? join(dirname(DATA), "save") : join(presetDir(active()), "save");
+      let a = []; try { a = JSON.parse(readFileSync(join(dir, "silly-season.json"), "utf8")); } catch {}
+      return json(res, 200, Array.isArray(a) ? a : []); }
+    if (req.method === "GET" && p === "/help.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/help-ui.js"))); }
+    if (req.method === "GET" && p === "/tracks.js") { res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }); return res.end(readFileSync(join(here, "src/launcher/tracks-ui.js"))); }
     const S = srv();
     if (await S.roster(req, res, url, { json, body })) return;
     if (await S.tracks(req, res, url, { json, body })) return;
@@ -329,8 +336,8 @@ section{display:none}section.on{display:block}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:16px}
 .card h2{margin:0 0 12px;font-size:15px}.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 label{color:var(--dim);font-size:13px}input,select{background:#0b0e13;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:inherit}
-input[type=number]{width:90px}button.btn{background:#222a33;color:var(--text);border:1px solid var(--line);border-radius:7px;padding:8px 14px;font:inherit;cursor:pointer}
-button.btn:hover{border-color:#3b4652}button.primary{background:var(--accent);color:#1a1205;border-color:var(--accent);font-weight:600}
+input[type=number]{width:90px}button.btn,a.btn{background:#222a33;color:var(--text);border:1px solid var(--line);border-radius:7px;padding:8px 14px;font:inherit;cursor:pointer}a.btn{display:inline-block;text-decoration:none}
+button.btn:hover,a.btn:hover{border-color:#3b4652}button.primary{background:var(--accent);color:#1a1205;border-color:var(--accent);font-weight:600}
 button.danger{color:var(--bad)}button:disabled{opacity:.5;cursor:default}
 .big{font-size:16px;padding:12px 22px}.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;border:1px solid var(--line);color:var(--dim)}
 .pill.ok{color:var(--ok);border-color:#235a2e}.pill.bad{color:var(--bad);border-color:#6b2522}.pill.run{color:var(--accent);border-color:#6b5512}
@@ -349,9 +356,10 @@ a{color:var(--accent)}code{background:#0b0e13;padding:1px 5px;border-radius:4px}
 <section id="play" class="on">
   <div class="card"><h2>Game</h2>
     <div class="row"><button class="btn primary big" id="start">Start game</button><button class="btn" id="stop" disabled>Stop</button>
-      <span id="gstate" class="pill">stopped</span><a id="gopen" href="#" target="_blank" style="display:none">Open the game page</a></div>
+      <span id="gstate" class="pill">stopped</span><a id="gopen" href="#" target="_blank" style="display:none">Open the game page</a><a class="btn" href="/silly-season" target="_blank">Silly season report</a></div>
     <div class="row" style="margin-top:12px"><label>Port <input type="number" id="gport" min="1024" max="65535"></label>
       <label>Start at <select id="gboot"><option value="flow">Intro (normal)</option><option value="title">Title screen (skips the intro movies)</option><option value="menu">Main menu (skips the intro and title)</option></select></label>
+      <label title="How far away the catch fence and other fading track details are drawn (the game fades them out ahead of you)">Catch fence distance <select id="gfade"><option value="1">1x (the game's)</option><option value="1.5">1.5x</option><option value="2">2x</option><option value="3">3x</option><option value="4">4x</option></select></label>
       <label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="gunlock"> Unlock everything</label></div>
     <p class="hint" id="gunlockhint" style="display:none;margin:6px 0 0">Every Thunder Plate goes to all four profiles when the game starts: all cars and drivers, the locked races and tracks (night, infield, fantasy, All-Star, Shootout), Create-A-Car templates and paints, every sponsor level and the extras. A profile saved while this is on keeps them after you turn it off.</p>
     <div class="row" style="margin-top:12px"><label>Online <select id="gnet"><option value="off">Off (single player)</option><option value="host">Host a race</option><option value="join">Join a race</option></select></label>
@@ -466,7 +474,7 @@ async function load() {
   fillSelect($("umodel"), st.models, u.model, "none: smooth resize"); fillSelect($("upre"), st.models, u.pre, "none");
   $("uscale").value = String(u.scale); $("usoften").value = u.soften; $("usoftenv").textContent = Number(u.soften).toFixed(1); $("uover").checked = !!u.overwrite;
   $("utile").value = u.tile; $("udevice").value = u.device || ""; $("ufp16").checked = !!u.fp16;
-  $("gport").value = st.settings.game.port; $("gboot").value = st.settings.game.boot; $("gunlock").checked = !!st.preset.unlockAll; $("gunlockhint").style.display = $("gunlock").checked ? "" : "none";
+  $("gport").value = st.settings.game.port; $("gboot").value = st.settings.game.boot; $("gfade").value = String(st.settings.game.fadeScale ?? 1); $("gunlock").checked = !!st.preset.unlockAll; $("gunlockhint").style.display = $("gunlock").checked ? "" : "none";
   $("gnetrelay").value = st.settings.game.netRelay || ""; $("gnet").value = st.settings.game.net || "off"; $("gnetname").value = st.settings.game.netName || ""; $("gnetaddr").value = st.settings.game.netAddress || ""; $("gnetport").value = st.settings.game.netPort || 27104; netShow();
   $("mdir").textContent = st.modelsDir; $("edir").textContent = st.exports; $("tdir").textContent = st.textures;
   renderOverrides(); renderPython(); renderGameFiles(); renderRecomp(); tick();
@@ -530,7 +538,7 @@ function renderGameFiles() {
 $("gtosetup").onclick = e => { e.preventDefault(); document.querySelector('nav button[data-tab="setup"]').click(); };
 $("isorun").onclick = async () => { try { await api("/api/iso", { path: $("isopath").value, force: $("isoforce").checked }); $("isostate").textContent = "starting…"; } catch (e) { say(e); } };
 $("gunlock").onchange = () => { $("gunlockhint").style.display = $("gunlock").checked ? "" : "none"; };
-$("start").onclick = async () => { try { glogNext = 0; $("glog").textContent = ""; await api("/api/game/start", { port: Number($("gport").value), boot: $("gboot").value, unlockAll: $("gunlock").checked, net: $("gnet").value, netName: $("gnetname").value, netAddress: $("gnetaddr").value, netPort: Number($("gnetport").value), netRelay: $("gnetrelay").value }); } catch (e) { say(e); } };
+$("start").onclick = async () => { try { glogNext = 0; $("glog").textContent = ""; await api("/api/game/start", { port: Number($("gport").value), boot: $("gboot").value, fadeScale: Number($("gfade").value), unlockAll: $("gunlock").checked, net: $("gnet").value, netName: $("gnetname").value, netAddress: $("gnetaddr").value, netPort: Number($("gnetport").value), netRelay: $("gnetrelay").value }); } catch (e) { say(e); } };
 // online: what to fill in, and while the game runs who is connected
 const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 function netShow() { const m = $("gnet").value; document.querySelectorAll(".netjoin").forEach(e => e.style.display = m === "join" ? "" : "none"); document.querySelectorAll(".neton").forEach(e => e.style.display = m === "off" ? "none" : ""); $("gnetport").parentElement.style.display = m === "off" || $("gnetrelay").value.trim() ? "none" : ""; $("gnetname").parentElement.style.display = m === "off" ? "none" : ""; netInfo(); }

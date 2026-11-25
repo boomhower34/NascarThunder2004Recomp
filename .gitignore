@@ -46,3 +46,14 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+
+# ---- your own local files (screenshots, sound samples, analysis dumps from the game)
+local/
+_to_delete/
+drivers/
+nr2003tracks/
+_profiles_from_the_bug/
+github-repo/
+
+# diagnostics written by the game server
+logs/

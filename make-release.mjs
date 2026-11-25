@@ -27,7 +27,7 @@
 import fs from "node:fs";
 import zlib from "node:zlib";
 import { createHash } from "node:crypto";
-import { join, dirname, basename } from "node:path";
+import { join, dirname, basename, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -51,7 +51,7 @@ const PLAT = {
 
 // ---------------------------------------------------------------- the files
 // read in ways the search below does not follow (a path built from the module's folder, a Python import, tools)
-const EXTRA = ["v8-tuning.mjs", "x86_callee_pops.json", "kernel_imports.csv", "xbe_symbols.json", "recomp-native.c", "relay.mjs", "read_textures.py", "nt04.config.example.json"];
+const EXTRA = ["src/cpu/v8-tuning.mjs", "src/cpu/x86_callee_pops.json", "src/xbox/kernel_imports.csv", "src/xbox/xbe_symbols.json", "src/cpu/recomp-native.c", "src/net/relay.mjs", "python/read_textures.py", "nt04.config.example.json"];
 // never shipped: the game, what is built from its code, the player's own data, development leftovers
 const DENY = [/^default\.(xbe|exe)$/i, /^recomp(-native)?\.json$/i, /\.wasm(\.gz)?$/i, /\.node(\.gz)?$/i, /\.(dat|qkl|db|iso|xiso|bin|pth|safetensors)$/i,
   /^launcher-settings\.json$/i, /^(Data|save|roster|presets|textures|models|captures|drivers|jit-cache|exports|nr2003tracks|_to_delete|_profiles_from_the_bug|__pycache__)\//i];
@@ -60,16 +60,18 @@ const DENY = [/^default\.(xbe|exe)$/i, /^recomp(-native)?\.json$/i, /\.wasm(\.gz
 const CREATED = new Set(["track.json", "index.json", "sponsors.json", "roster.json", "recomp.json", "recomp-native.json", "launcher-settings.json"]);
 function collect() {
   const seen = new Set(), todo = ["launcher.mjs", ...EXTRA], missing = [];
-  const pats = [/(?:import|export)[^"'`;]*?from\s*["']\.\/([^"']+)["']/g, /import\s+["']\.\/([^"']+)["']/g, /import\(\s*["']\.\/([^"']+)["']/g,
-    /import\(\s*(?:root|here|HERE)\s*\+\s*["']([^"']+)["']/g, /new URL\(\s*["']\.\/([^"']+)["']\s*,\s*import\.meta\.url/g,
-    /join\(\s*(?:here|HERE|ROOT|root|dirname\(fileURLToPath\(import\.meta\.url\)\))\s*,\s*["']([^"'${}/]+\.(?:mjs|js|json|py|csv|c))["']\s*\)/g,
+  // (paths are relative to the file they are in: "./x.mjs", "../cpu/x.mjs", join(here, "render/play-client.js"))
+  const pats = [/(?:import|export)[^"'`;]*?from\s*["'](\.{1,2}\/[^"']+)["']/g, /import\s+["'](\.{1,2}\/[^"']+)["']/g, /import\(\s*["'](\.{1,2}\/[^"']+)["']/g,
+    /new URL\(\s*["'](\.{1,2}\/[^"']+)["']\s*,\s*import\.meta\.url/g,
+    /join\(\s*(?:here|HERE|dirname\(fileURLToPath\(import\.meta\.url\)\))\s*,\s*["']([^"'${}]+\.(?:mjs|js|json|py|csv|c))["']\s*\)/g,
     /^from (\w+) import/gm];
   while (todo.length) {
-    let f = todo.pop(); if (/^\w+$/.test(f)) f += ".py";                       // (a Python "from x import": x.py, if it is ours)
-    if (seen.has(f) || CREATED.has(f)) continue; if (!fs.existsSync(join(HERE, f))) { if (!/\.py$/.test(f)) missing.push(f); continue; }
+    let f = todo.pop();
+    if (seen.has(f) || CREATED.has(posix.basename(f))) continue; if (!fs.existsSync(join(HERE, f))) { if (!/\.py$/.test(f)) missing.push(f); continue; }
     seen.add(f); if (!/\.(mjs|js|py)$/.test(f)) continue;
     const s = fs.readFileSync(join(HERE, f), "utf8");
-    for (const p of pats) for (const m of s.matchAll(p)) if (/\.py$/.test(f) === (p.source.startsWith("^from"))) todo.push(m[1]);
+    for (const p of pats) for (const m of s.matchAll(p)) if (/\.py$/.test(f) === (p.source.startsWith("^from")))
+      todo.push(posix.normalize(posix.join(posix.dirname(f), /^\w+$/.test(m[1]) ? m[1] + ".py" : m[1])));   // (Python "from x import": x.py beside it, if ours)
   }
   return { files: [...seen].sort(), missing };
 }
